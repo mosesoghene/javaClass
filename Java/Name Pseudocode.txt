@@ -1,0 +1,2 @@
+STAGE 1
+display "Hi my name is 'yourname', and i write java"

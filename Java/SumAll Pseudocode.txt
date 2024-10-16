@@ -1,0 +1,8 @@
+STAGE 1
+sum all numbers provided
+display result
+
+STAGE 2
+sum (3 + 4 + 7 + 9 + 10) / 2
+store in a variable 'sum'
+display 'sum'

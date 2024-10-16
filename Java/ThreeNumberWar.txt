@@ -1,0 +1,16 @@
+STAGE 1
+Collect 3 integer inputs from user
+calculate the sum, average, product
+determine the largest and smallest
+display results
+
+STAGE 2
+prompt user to enter 3 integer inputs
+save inputs as num1, num2, and num3
+sum num1 + num2 + num3 and save as sum
+multiply num1 * num2 * num3 and save as product
+divide sum / 3 and save as average
+check if num1 > num2 > num3, save as largest
+repeat step 6 for num2 and num3
+check if num1 < num < num3, save as largest
+repeat step 8 for num2 and num3

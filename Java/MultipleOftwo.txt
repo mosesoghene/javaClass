@@ -1,0 +1,12 @@
+STAGE 1
+Collect 2 integer user input 
+calculate to determind if num1 tripled is a multiple of num2 doubled
+display result
+
+STAGE 2
+prompt user to enter 2 interger inputs
+collect inputs and save as num1, num2
+muliply num1 by 3, save as trippled
+multiply num2 by 2, save as doubled
+check if tripled divided by doubled using modulo is zero(0)
+if true, display positive result else, display negative result

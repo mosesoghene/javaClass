@@ -1,0 +1,32 @@
+STAGE 1
+Get digits between 0 and 100 from users
+separate each digit
+summ the digits
+display result
+
+STAGE 2
+Prompt user to enter digit between 0 and 1000
+save as 'input'
+check if 'input' > 0:
+	if True, check if input > 100:
+		If True, divide 'input' by 10 using % operator
+		save result as 'lastNum'
+		divide 'input' by 10 using / operator
+		save result as 'tempData'
+		divide 'tempData' by 10 using % operator
+		save result as 'midNum'
+		divide 'tempData' by 10 using / operator
+		save as 'firstNum'
+		sum firstNum + midNum + lastNUm
+		save result as 'total'
+		dispaly 'total'
+	If False, divide 'input' by 10 using % operator
+		save result as 'lastNum'
+		divide 'input' by 10 using / operator
+		save result as 'firstNum'
+		sum firstNum + lastNUm
+		save result as 'total'
+		dispaly 'total'
+If False, Display result as 0
+
+

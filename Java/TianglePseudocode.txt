@@ -1,0 +1,13 @@
+STAGE 1
+Read Triangle sides length from user
+compute the area and volume
+display result
+
+STAGE 2
+Prompt user to enter the length of triangle's sides
+Save collected input as 'triangle_length'
+calculate for triangle area using formula: sqrt(3)/4 * ('triangle_length' * 'triangle_length')%n 
+Save as 'triangle_area'
+calculate for triangle volume using formula: 'triangle_area' * 'triangle_length' 
+Save as 'triangle_volume'
+display result for 'triangle_area' and 'triangle_volume'

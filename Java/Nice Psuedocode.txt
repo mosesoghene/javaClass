@@ -1,0 +1,8 @@
+STAGE 1
+Collect users name
+display "Hi username, Nice to meet you!"
+
+STAGE 2
+prompt user to enter name
+save user's name as 'name'
+display "Hi 'name', Nice to meet you!"

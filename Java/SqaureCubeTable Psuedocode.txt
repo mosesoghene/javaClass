@@ -1,0 +1,9 @@
+STAGE 1
+Calculate the square and cube of numbers 0 - 10;
+display result in a table format
+
+STAGE 2
+start for loop count from 0, save as 'n'
+Display n, n*n, n*n*n
+increase 'n' by 1
+repeat step 2 - 3 until n > 10
