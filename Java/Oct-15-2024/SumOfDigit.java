@@ -7,7 +7,7 @@ public class SumOfDigit {
     int data = input.nextInt();
     
     if (data > 0 ) {
-      if (data > 100 ) {
+      if (data > 99 ) {
         int lastNum = data % 10;
         int tempData = data / 10;
         int midNum = tempData % 10;

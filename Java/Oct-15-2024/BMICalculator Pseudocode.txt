@@ -1,0 +1,21 @@
+STAGE 1
+collect height and weight from user
+calculate the BMI
+display BMI
+display BMI Category
+
+STAGE 2
+prompt user to enter height(in inches) and weight data
+collect user input
+save as 'height' and 'weight'
+calculate BMI using the formula ('height' x 703) / ('weight' x 'weight')
+save calculation as 'bmi'
+display 'bmi'
+
+check if 'bmi' < 18
+	display "underweight'
+else if 'bmi' > 18 and 'bmi' < 25
+	display "normal weight'
+else if 'bmi' > 25 and 'bmi' < 30
+	display "overweight'
+else display 'Obesity'

@@ -1,5 +1,5 @@
 /**
-@AUTHOR: Moses Oghene (LocalDevv)
+@AUTHOR: Moses Oghene (@LocalDevv)
 
 Program to check if a 3 digit number between 0 - 1000 is a palindrome.
 program prompts user to enter a 3 digit integer, stores integer and checks if integer is a palindrome
@@ -20,7 +20,7 @@ public class ThreeDigitPalindrome{
     int data = inputEngine.nextInt();
   
     // Check if 'data' input is within needed range
-    if (data > 100 && data < 1000 ){
+    if (data > 99 && data < 1000 ){
     
       // Check if 'data' is a palindrome
       if (data % 10 == data / 100){

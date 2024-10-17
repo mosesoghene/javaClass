@@ -1,0 +1,14 @@
+STAGE 1
+Collect 3 digit integer from user
+Determine if integer is a palindrome
+Display result
+
+STAGE 2
+promt user to enter digit integer
+collect user input
+save user integer input as 'data'
+check if 'data' > 99 and 'data' < 1000
+if True, check if ('data' % 10 == 'data' / 100)
+if True, display "'data' is a palindrome"
+else, display "'data' is not a palindrome"
+else, display "'data' is out of range!"

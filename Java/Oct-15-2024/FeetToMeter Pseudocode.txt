@@ -1,0 +1,12 @@
+STAGE 1
+Collect feet input from user
+convert feet to meter
+display result
+
+STAGE 2
+prompt user to enter feet integer
+collect user input
+save input as 'data'
+convert feet to meter using formula ('data' x 0.305)
+save as 'sum'
+display result

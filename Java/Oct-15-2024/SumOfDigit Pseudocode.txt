@@ -1,0 +1,32 @@
+STAGE 1
+collect integer between 0 - 1000 from user
+sum all individual integers
+display result
+
+STAGE 2
+prompt user to enter input between 0 - 1000
+collect user input
+store input as data
+
+check if data > 0
+	if True, check if data > 99
+		if true, divide data by 10 using modulo operator %
+		save as lastNum
+		divide data by 10 using division operator /
+		save as tempData
+		divide tempData by 10 using modulo operator %
+		save as midNum
+		divide tempData by 10 using division operator /
+		save as firstNum
+		sum firstNum + midNum + lastNum
+		save as total
+		display total
+	if False, divide data by 10 using modulo operator %
+		save as lastNum
+		divide data by 10 using division operator /
+		save as firstNum
+		sum firstNum + lastNum
+		save as total
+		display total
+if False, display "number out of range"
+

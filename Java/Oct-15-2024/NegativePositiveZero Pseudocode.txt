@@ -1,0 +1,18 @@
+STAGE 1
+collect 5 integer numbers from user
+count how many are negative, positive, and zero value
+display result
+
+STAGE 2
+declare and initialize variables negativeCount, positiveCount, and zeroCount to 0
+declare and initialize valriable loopCount to 5
+prompt user to enter integer input
+collect user input and store as dataInput
+check if dataInput > 0
+if True, increase positiveCount by 1, decrease loopCount by 1
+else check if dataInput < 0
+if True, increase negativeCount by 1, decrease loopCount by 1
+else, increase zeroCount by 1, decrease loopCount by 1
+repeat step 3 - 9 while loopCount > 0
+
+display results
