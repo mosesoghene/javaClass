@@ -27,5 +27,7 @@ public class NegativePositiveZeroCounter {
       
       numberCounter++
     }
+    
+    System.out.printf("There are %d negative numbers %nThere are %d positive numbers %nThere are %d zero numbers %n", negativeCounter, positiveCounter, zeroCounter)
   }
 }
