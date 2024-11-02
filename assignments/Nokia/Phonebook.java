@@ -23,15 +23,15 @@ public class Phonebook{
       
       switch (mainMenuResponse){
         case 1: System.out.print("Search"); break;
-        case 2: System.out.print("Search"); break;
-        case 3: System.out.print("Search"); break;
-        case 4: System.out.print("Search"); break;
-        case 5: System.out.print("Search"); break;
-        case 6: System.out.print("Search"); break;
-        case 7: System.out.print("Search"); break;
-        case 8: System.out.print("Search"); break;
-        case 9: System.out.print("Search"); break;
-        case 10: System.out.print("Search"); break;
+        case 2: System.out.print("Service Nos."); break;
+        case 3: System.out.print("Add name"); break;
+        case 4: System.out.print("Erase"); break;
+        case 5: System.out.print("Edit"); break;
+        case 6: System.out.print("Assign tone"); break;
+        case 7: System.out.print("Send b'card"); break;
+        case 8: System.out.print("Options"); break;
+        case 9: System.out.print("Speed dials"); break;
+        case 10: System.out.print("Voice tags"); break;
         default: System.out.print("Invalid menu no");  break;
         
       }
