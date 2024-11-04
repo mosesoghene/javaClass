@@ -16,6 +16,7 @@ public class Phonebook{
         8. Options
         9. Speed dials
         10. Voice tags
+        0: Go to Previous menu
         >> """;
       
       System.out.print(mainMenu);
@@ -32,6 +33,7 @@ public class Phonebook{
         case 8: System.out.print("Options"); break;
         case 9: System.out.print("Speed dials"); break;
         case 10: System.out.print("Voice tags"); break;
+        case 0: Nokia.menu();
         default: System.out.print("Invalid menu no");  break;
         
       }

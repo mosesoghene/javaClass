@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 public class Messages{
+  static Scanner scan = new Scanner(System.in);
+  static int menuResponse;
   
   public static void menu(){
-    Scanner scan = new Scanner(System.in);
-    int menuResponse;
+    
       String mainMenu = """
       Messages
         1. Write messages
@@ -17,6 +18,7 @@ public class Messages{
         8. Info service
         9. Voice mailbox number
         10. Service command editor
+        0: Go to Previous menu
         >> """;
       
       System.out.print(mainMenu);
@@ -29,16 +31,32 @@ public class Messages{
         case 4: System.out.print("Picture Messages"); break;
         case 5: System.out.print("Templates"); break;
         case 6: System.out.print("Smileys"); break;
-        case 7: 
+        case 7: messageSetting(); break;
+          
+        case 8: System.out.print("Info service"); break;
+        case 9: System.out.print("Voice mailbox number"); break;
+        case 10: System.out.print("Service command editor"); break;
+        case 0: Nokia.menu();
+        default: System.out.print("Invalid menu no");  break;
+        
+      }
+      
+      
+  } 
+  
+  public static void messageSetting(){
+    int menuResponse;
           System.out.print("""
             Message settings
             1. Set 1
             2. Common
+            0: Go to Previous menu
             > """);
             menuResponse = scan.nextInt();
           switch(menuResponse){
             case 1: 
               System.out.print("""
+            Set 1
             1. Message centre number
             2. Message sent as
             3. Message validity
@@ -53,6 +71,7 @@ public class Messages{
             
             case 2: 
               System.out.print("""
+            Common
             1. Delivery reports
             2. Reply via same centre
             3. Character support
@@ -64,16 +83,7 @@ public class Messages{
               case 3: System.out.print("Character support"); break;
               default: System.out.print("Invalid menu no");  break;
             } break;
+            case 0: menu(); break;
           }
-          break;
-          
-        case 8: System.out.print("Info service"); break;
-        case 9: System.out.print("Voice mailbox number"); break;
-        case 10: System.out.print("Service command editor"); break;
-        default: System.out.print("Invalid menu no");  break;
-        
-      }
-      
-      
-  } 
+  }
 }
