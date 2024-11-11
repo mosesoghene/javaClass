@@ -21,6 +21,8 @@ public class Messages{
         0: Go to Previous menu
         >> """;
       
+      
+      System.out.print(String.format("\033[2J"));
       System.out.print(mainMenu);
       menuResponse = scan.nextInt();
       
@@ -36,8 +38,13 @@ public class Messages{
         case 8: System.out.print("Info service"); break;
         case 9: System.out.print("Voice mailbox number"); break;
         case 10: System.out.print("Service command editor"); break;
-        case 0: Nokia.menu();
-        default: System.out.print("Invalid menu no");  break;
+        case 0: 
+                System.out.print(String.format("\033[2J"));
+                Nokia.menu();
+        default:  
+                System.out.print(String.format("\033[2J"));
+                Nokia.menu();
+                break;
         
       }
       
@@ -46,6 +53,8 @@ public class Messages{
   
   public static void messageSetting(){
     int menuResponse;
+    
+          System.out.print(String.format("\033[2J"));
           System.out.print("""
             Message settings
             1. Set 1
@@ -54,36 +63,61 @@ public class Messages{
             > """);
             menuResponse = scan.nextInt();
           switch(menuResponse){
-            case 1: 
+            case 1:             
+              System.out.print(String.format("\033[2J"));
               System.out.print("""
             Set 1
             1. Message centre number
             2. Message sent as
             3. Message validity
+            0. Go to Previous menu
             > """);
             menuResponse = scan.nextInt();
             switch(menuResponse){
               case 1: System.out.print("Message centre number"); break;
               case 2: System.out.print("Message sent as"); break;
               case 3: System.out.print("Message validity"); break;
-              default: System.out.print("Invalid menu no");  break;
+              case 0: 
+                System.out.print(String.format("\033[2J"));
+                messageSetting();
+                break;
+              default: 
+                System.out.print(String.format("\033[2J"));
+                messageSetting();
+                break;
             } break;
             
-            case 2: 
+            case 2:             
+              System.out.print(String.format("\033[2J"));
               System.out.print("""
             Common
             1. Delivery reports
             2. Reply via same centre
             3. Character support
+            0. Go to Previous menu
             > """);
             menuResponse = scan.nextInt();
             switch(menuResponse){
               case 1: System.out.print("Delivery reports"); break;
               case 2: System.out.print("Reply via same centre"); break;
               case 3: System.out.print("Character support"); break;
-              default: System.out.print("Invalid menu no");  break;
+              case 0: 
+                System.out.print(String.format("\033[2J"));
+                messageSetting();
+                break;
+              default: 
+                System.out.print(String.format("\033[2J"));
+                messageSetting();
+                break;
             } break;
-            case 0: menu(); break;
+            case 0:  
+                System.out.print(String.format("\033[2J"));
+                menu();
+                break;
+            default:  
+                System.out.print(String.format("\033[2J"));
+                menu();
+                break;
           }
   }
 }

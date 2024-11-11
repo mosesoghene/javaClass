@@ -25,6 +25,7 @@ public class Nokia{
         0. Shut Down
         >> """;
       
+      System.out.print(String.format("\033[2J"));
       System.out.print(mainMenu);
       int mainMenuResponse = scan.nextInt();
       
@@ -42,7 +43,11 @@ public class Nokia{
         case 11: Clock.menu(); break;
         case 12: System.out.println("Profile"); break;
         case 13: System.out.println("SIM Services"); break;
-        case 0: System.out.println("Shutting down..."); break;
+        case 0: 
+            System.out.print(String.format("\033[2J"));
+            System.out.println("Shutting down..."); 
+            System.exit(0);
+            break;
       }
       
     }

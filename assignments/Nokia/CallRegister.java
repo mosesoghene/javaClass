@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-public class CallRegister{
-  
+public class CallRegister{  
   static Scanner scan = new Scanner(System.in);
   static int menuResponse;
   
@@ -19,6 +18,7 @@ public class CallRegister{
         0. Go back to previous menu
         >> """;
       
+      System.out.print(String.format("\033[2J"));
       System.out.print(mainMenu);
       menuResponse = scan.nextInt();
       
@@ -31,42 +31,47 @@ public class CallRegister{
         case 5: showCallDurationMenu(); break;
             
         case 6: 
-          System.out.print("""
-            Show call costs
-            1. Last call cost
-            2. All calls’ cost
-            3. Clear counters
-            > """);
-            menuResponse = scan.nextInt();
-            switch(menuResponse){
-              case 1: System.out.print("Last call cost"); break;
-              case 2: System.out.print("All calls’ cost"); break;
-              case 3: System.out.print("Clear counters"); break;
-              default: System.out.print("Invalid menu no");  break;
-            } break;
+          showCallCostMenu(); 
+          break;
             
-        case 7:           
+        case 7:  
+          System.out.print(String.format("\033[2J"));  
           System.out.print("""
             Call cost settings
               1. Call cost limit
               2. Show costs in
+              0. Go to previous menu
             > """);
             menuResponse = scan.nextInt();
             switch(menuResponse){
               case 1: System.out.print("Call cost limit"); break;
               case 2: System.out.print("Show costs in"); break;
-              default: System.out.print("Invalid menu no");  break;
+              case 0: 
+                System.out.print(String.format("\033[2J"));
+                menu();
+              default: 
+                System.out.print("Invalid menu no");  
+                System.out.print(String.format("\033[2J"));
+                menu();
+                break;
             } break;
           
         case 8: System.out.print("Prepaid credit"); break;
-        case 0: Nokia.menu();
-        default: System.out.print("Invalid menu no");  break;
+        case 0: 
+          System.out.print(String.format("\033[2J"));
+          Nokia.menu();
+        default: 
+                System.out.print("Invalid menu no");  
+                System.out.print(String.format("\033[2J"));
+                Nokia.menu();
+                break;
       }
     
   } 
   
   public static void showCallDurationMenu() {
-    
+        
+          System.out.print(String.format("\033[2J"));
           System.out.print("""
             Show Call Duration 
               1. Last call duration
@@ -84,7 +89,38 @@ public class CallRegister{
               case 4: System.out.print("Message sent as"); break;
               case 5: System.out.print("Message validity"); break;
               case 0: menu();
-              default: System.out.print("Invalid menu no");  break;
+              default:
+                System.out.print("Invalid menu no");  
+                System.out.print(String.format("\033[2J"));
+                menu();
+                break;
             } 
+  }
+  
+  public static void showCallCostMenu() {
+    
+          System.out.print(String.format("\033[2J"));
+          System.out.print("""
+            Show call costs
+            1. Last call cost
+            2. All calls’ cost
+            3. Clear counters
+            0. Go back to previous menu
+            > """);
+            menuResponse = scan.nextInt();
+            switch(menuResponse){
+              case 1: System.out.print("Last call cost"); break;
+              case 2: System.out.print("All calls’ cost"); break;
+              case 3: System.out.print("Clear counters"); break;
+              case 0: 
+                System.out.print(String.format("\033[2J"));
+                menu();
+                break;
+              default: 
+                System.out.print("Invalid menu no");  
+                System.out.print(String.format("\033[2J"));
+                menu();
+                break;
+            }
   }
 }

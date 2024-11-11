@@ -31,7 +31,14 @@ public class Tones{
         case 7: System.out.print("Warning and game tones"); break;
         case 8: System.out.print("Vibrating alert"); break;
         case 9: System.out.print("Screen saver"); break;
-        default: System.out.print("Invalid menu input"); break;
+        case 0: 
+          Nokia.menu();          
+          System.out.print(String.format("\033[2J"));
+          break;
+        default: 
+          Nokia.menu();          
+          System.out.print(String.format("\033[2J"));
+          break;
       }
         
   }
