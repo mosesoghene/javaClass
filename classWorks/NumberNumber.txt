@@ -1,0 +1,13 @@
+prompt user to enter first number
+collect first number
+save as number1
+prompt user to enter first number
+collect second number
+save as number2
+check if number1 > number2;
+if true, display result
+display "you are doing well..."
+sum number1 + number2
+save as sum
+check if sum > 50
+if true, display result

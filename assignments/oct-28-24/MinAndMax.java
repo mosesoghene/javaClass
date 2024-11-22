@@ -10,6 +10,7 @@ public class MinAndMax {
     do {
       System.out.println("\nEnter 0 to get result");
 		  System.out.print("Enter a number \n> ");
+		  
 		  choice = scanner.nextInt();
 
 			if (choice > largest) {

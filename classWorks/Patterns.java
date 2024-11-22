@@ -37,7 +37,7 @@ public class Patterns{
 		for (int rowD = 1; rowD <= 6; rowD++) {
 			for (int spaceD = 1; spaceD <= 6 - rowD; spaceD++) {
 				System.out.print(" ");
-            		}
+      }
 			for (int colD = 1; colD <= rowD; colD++) {
 				System.out.print("*");
 			}

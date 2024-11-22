@@ -1,0 +1,11 @@
+prompt user to enter a number
+collect number
+save as userNumber
+check if userNumber > 0
+if true, display "positive", else
+check if number < 0
+if true, display "negative", else
+display "zero"
+repeat step 1 - 13  for 2 more times 
+
+END OF PROGRAM

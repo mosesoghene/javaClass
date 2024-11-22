@@ -1,0 +1,16 @@
+prompt user to enter a number
+collect number
+save as firstNumber
+prompt user to enter a number
+collect number
+save as secondNumber
+prompt user to enter a number
+collect number
+save as thirdNumber
+check if firstNumber > secondNumber and firstNumber > thirdNumber 
+if true, display firstNumber, else
+check if secondNumber > thirdNumber
+if true, display secondNumber, else
+display thirdNumber
+
+END OF PROGRAM

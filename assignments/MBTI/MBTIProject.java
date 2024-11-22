@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class MBTIProject {
+  static int question = 0;
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
@@ -13,6 +14,8 @@ public class MBTIProject {
 		
 		String[] answer = new String[4];
 		String[] storage = new String[20];
+		
+		
 
 		String[][] questions = {
 		  {"A. Expend energy, enjoy groups", "\tB. conserve energy, enjoy one on one\n"},
@@ -70,35 +73,20 @@ public class MBTIProject {
     
 		for (int section = 0; section < 4; section++) {
 
-			 for (int question = section; question < questions.length; question += 4) {
+			 for (question = section; question < questions.length; question += 4) {
 
-           		 	System.out.print(questions[question][0]);
-           		 	System.out.print(questions[question][1]);
+   		 	System.out.print(questions[question][0]);
+   		 	System.out.print(questions[question][1]);
 
-			        	System.out.print("\nSelect A/B \n> ");
-			          String response = scan.nextLine();
-			          
-			          System.out.print("\033[H\033[2J"); 
-                System.out.flush();
+      	System.out.print("\nSelect A/B \n> ");
+        String response = scan.nextLine();
+        
+        System.out.print("\033[H\033[2J"); 
+        System.out.flush();
 
-
-			        if (response.equalsIgnoreCase("A") || response.equalsIgnoreCase("B")) {
-					            if (response.equalsIgnoreCase("A")) {
-						            storage[question] = questions[question][0];
-						            responseA[section]++;
-					            } else {
-						            storage[question] = questions[question][1];
-						            responseB[section]++;
-					            }
-				
-				     }
-
-			        else {
-					        System.out.println("Error: Expected A or B as response, please try again.");
-					        question -= 4;
-				
-				 }
-			 System.out.println();
+        checkResponse(response);
+			        
+			  System.out.println();
 			}
 		}
 
@@ -139,6 +127,22 @@ public class MBTIProject {
 		
 	}
 
+	public static void checkResponse(String response){	  
+	  
+	  if (response.equalsIgnoreCase("A") || response.equalsIgnoreCase("B")) {
+      if (response.equalsIgnoreCase("A")) {
+        storage[question] = questions[question][0];
+        responseA[section]++;
+      } else {
+        storage[question] = questions[question][1];
+        responseB[section]++;
+      }
+				
+		} else {
+        System.out.println("Error: Expected A or B as response, please try again.");
+        question -= 4;
+	  }
+	}
 	
 	public static String getResponseEI(int a, int b) {
 		return (a > b) ? "E" : "I";		
@@ -173,7 +177,7 @@ public class MBTIProject {
 			case "ISFJ" -> {
 			System.out.println("""
 			ISFJ (Introverted, Sensing, Feeling, Judging)
-			  ISFJs are compassionate and supportive individuals who prioritize the needs of others. They are meticulous and organized, with a strong attention 			to detail. ISFJs excel in careers that involve helping others, such as teaching, nursing, and social work. They value harmony and stability, and 			are often peacemakers in their personal and professional lives. However, ISFJs may struggle with assertiveness and 							boundary-setting, and may need to work on expressing their own needs and desires.
+			  ISFJs are compassionate and supportive individuals who prioritize the needs of others. They are meticulous and organized, with a strong attention to detail. ISFJs excel in careers that involve helping others, such as teaching, nursing, and social work. They value harmony and stability, and are often peacemakers in their personal and professional lives. However, ISFJs may struggle with assertiveness and 							boundary-setting, and may need to work on expressing their own needs and desires.
 			""");
 			}
 
@@ -182,14 +186,14 @@ public class MBTIProject {
 			System.out.println("""
 			
 			INFJ (Introverted, Intuitive, Feeling, Judging)
-			  INFJs are visionary and empathetic individuals who are driven to make a positive difference in the world. They are creative and innovative, with a 			strong connection to their intuition. INFJs excel in careers that involve helping others, such as counseling, teaching, and social justice. They 			value authenticity and integrity, and are often drawn to artistic or humanitarian pursuits. However, INFJs may struggle with burnout and self-				care, and may need to prioritize their own needs.
+			  INFJs are visionary and empathetic individuals who are driven to make a positive difference in the world. They are creative and innovative, with a strong connection to their intuition. INFJs excel in careers that involve helping others, such as counseling, teaching, and social justice. They value authenticity and integrity, and are often drawn to artistic or humanitarian pursuits. However, INFJs may struggle with burnout and self-				care, and may need to prioritize their own needs.
 			""");
 		        }
 
 			case "INTJ" -> {
 			System.out.println("""
 			INTJ (Introverted, Intuitive, Thinking, Judging)
-			  INTJs are strategic and analytical individuals who are driven to achieve greatness. They are independent and self-motivated, with a strong desire 			for knowledge and understanding. INTJs excel in careers that involve innovation and problem-solving, such as science, technology, and 					entrepreneurship. They value efficiency and effectiveness, and are often drawn to leadership roles. However, INTJs may struggle with interpersonal 			relationships and emotional intelligence.
+			  INTJs are strategic and analytical individuals who are driven to achieve greatness. They are independent and self-motivated, with a strong desire for knowledge and understanding. INTJs excel in careers that involve innovation and problem-solving, such as science, technology, and entrepreneurship. They value efficiency and effectiveness, and are often drawn to leadership roles. However, INTJs may struggle with interpersonal 			relationships and emotional intelligence.
 			""");
 			}
 

@@ -1,0 +1,14 @@
+prompt user to enter a number
+collect number
+save as userNumber
+check if userNumber > 0
+if true, display "positive", else
+check if number < 0
+if true, display "negative", else
+display "zero"
+promt user to enter 'yes' to continue
+collect input
+save as 'terminator'
+repeat step 1 - 11 while 'terminator' equals 'yes'
+
+END OF PROGRAM

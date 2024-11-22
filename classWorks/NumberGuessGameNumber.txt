@@ -1,0 +1,11 @@
+declare a variable 'computerNumber'
+assign to a number 75
+prompt user to enter guess
+collect guess
+save as 'userNumber'
+check if userNumber > computerNunmber
+if true, display too high
+else, check if userNumber < computerNunmber
+if true, display too low
+else, display correct
+repeat step 3 - 10 while userNumber not equals computerNumber
