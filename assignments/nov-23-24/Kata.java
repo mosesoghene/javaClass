@@ -94,7 +94,7 @@ public class Kata{
   public static int sumOfArray(int[] array){
     int total = 0;
     for(int i = 0; i < array.length; i++){
-      total += i;
+      total += array[i];
     }
     return total;
   }
@@ -107,6 +107,46 @@ public class Kata{
     return total;
   }
   
+  public static int sumOfArrayWhile(int[] array){
+    int index = 0;
+    int total = 0;
+    while(index < array.length){
+      total += array[index];
+      index++;
+    }
+    return total;
+  }
+  
+  public static double sumOfArrayWhile(double[] array){
+    int index = 0;
+    double total = 0.0;
+    while(index < array.length){
+      total += array[index];
+      index++;
+    }
+    return total;
+  }
+  
+  public static int sumOfArrayDoWhile(int[] array){
+    int index = 0;
+    int total = 0;
+    do {
+      total += array[index];
+      index++;
+    }while(index < array.length);
+    return total;
+  }
+  
+  public static double sumOfDoWhileArray(double[] array){
+    int index = 0;
+    double total = 0.0;
+    do {
+      total += array[index];
+      index++;
+    }while(index < array.length);
+    return total;
+  }
+  
   public static boolean isPalindrome(String string){
     char[] stringChars = string.toCharArray();
     for (int i = 0; i < stringChars.length; i++){
@@ -114,4 +154,6 @@ public class Kata{
     }
     return true;
   }
+  
+  
 }
