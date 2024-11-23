@@ -25,6 +25,10 @@ public class Kata{
     System.out.println(isPalindrome("toot"));
     
     System.out.println(isPalindrome("eme"));
+    
+    System.out.println(Arrays.toString(joinArray(array, array)));
+    System.out.println(Arrays.toString(joinArrayAltElemtnts(array, array)));
+    System.out.println(Arrays.toString(toIntArray(2342)));
   }
   
   public static int getArrayMaxNumber(int[] array){
@@ -155,5 +159,32 @@ public class Kata{
     return true;
   }
   
+  public static int[] joinArray(int[] arrayA, int[] arrayB){
+    int[] newArray = new int[arrayA.length + arrayB.length];
+    for(int i = 0; i < arrayA.length; i++){
+      newArray[i] = arrayA[i];
+    }
+    for(int i = arrayA.length; i < newArray.length; i++){
+      newArray[i] = arrayB[i - arrayA.length];
+    }
+    return newArray;
+  }
   
+  public static int[] joinArrayAltElemtnts(int[] arrayA, int[] arrayB){
+    int[] newArray = new int[arrayA.length + arrayB.length];
+    int index = 0;
+    for (int i = 0; i < Math.max(arrayA.length, arrayB.length); i++){
+      if (i < arrayA.length) newArray[index++] = arrayA[i];
+      if (i < arrayB.length) newArray[index++] = arrayB[i];
+    }
+    return newArray;
+  }
+  
+  public static int[] toIntArray(int number){
+    String numberToString = "" + number;
+    char[] numbers = numberToString.toCharArray();
+    int[] numberArray = new int[numbers.length];
+    for(int i = 0; i < numberArray.length; i++) numberArray[i] = Character.digit(numbers[i], 10);
+    return numberArray;
+  }
 }
