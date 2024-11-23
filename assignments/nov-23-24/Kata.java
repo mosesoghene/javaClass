@@ -8,6 +8,10 @@ public class Kata{
     
     System.out.println(Arrays.toString(reverseArray(array)));
     System.out.println(Arrays.toString(reverseArray(stringArray)));
+    System.out.println(existsIn(array, 2));
+    System.out.println(existsIn(array, 6));
+    System.out.println(existsIn(stringArray, "a"));
+    System.out.println(existsIn(stringArray, "f"));
   }
   
   public static int getArrayMaxNumber(int[] array){
@@ -34,5 +38,19 @@ public class Kata{
       reversedArray[i] = array[index];
     }
     return reversedArray;
+  }
+  
+  public static boolean existsIn(int[] array, int element){
+    for(int i = 0; i < array.length; i++){
+      if (element == array[i]) return true;
+    }
+    return false;
+  }
+  
+  public static boolean existsIn(String[] array, String element){
+    for(int i = 0; i < array.length; i++){
+      if (element == array[i]) return true;
+    }
+    return false;
   }
 }
