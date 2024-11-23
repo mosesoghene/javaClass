@@ -15,6 +15,8 @@ public class Kata{
     
     printOddElements(array);
     printOddElements(stringArray);
+    printEvenElements(array);
+    printEvenElements(stringArray);
   }
   
   public static int getArrayMaxNumber(int[] array){
@@ -65,6 +67,18 @@ public class Kata{
   
   public static void printOddElements(String[] array){
     for(int i = 0; i < array.length; i += 2){
+      System.out.println(array[i]);
+    }
+  }
+  
+  public static void printEvenElements(int[] array){
+    for(int i = 1; i < array.length; i += 2){
+      System.out.println(array[i]);
+    }
+  }
+  
+  public static void printEvenElements(String[] array){
+    for(int i = 1; i < array.length; i += 2){
       System.out.println(array[i]);
     }
   }
