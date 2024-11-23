@@ -2,6 +2,7 @@ import java.util.Arrays;
 public class Kata{
   public static void main(String... args){
     int[] array = {1,2,3,5,4};
+    double[] dArray = {1.0,2.0,3.0,5.0,4.0};
     String[] stringArray = {"a", "b", "d", "c", "e"};
     
     System.out.println(getArrayMaxNumber(array));
@@ -17,6 +18,9 @@ public class Kata{
     printOddElements(stringArray);
     printEvenElements(array);
     printEvenElements(stringArray);
+    
+    System.out.println();
+    System.out.println(sumOfArray(dArray));
   }
   
   public static int getArrayMaxNumber(int[] array){
@@ -81,5 +85,21 @@ public class Kata{
     for(int i = 1; i < array.length; i += 2){
       System.out.println(array[i]);
     }
+  }
+  
+  public static int sumOfArray(int[] array){
+    int total = 0;
+    for(int i = 0; i < array.length; i++){
+      total += i;
+    }
+    return total;
+  }
+  
+  public static double sumOfArray(double[] array){
+    double total = 0.0;
+    for(int i = 0; i < array.length; i++){
+      total += array[i];
+    }
+    return total;
   }
 }
