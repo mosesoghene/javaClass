@@ -21,6 +21,10 @@ public class Kata{
     
     System.out.println();
     System.out.println(sumOfArray(dArray));
+    
+    System.out.println(isPalindrome("toot"));
+    
+    System.out.println(isPalindrome("eme"));
   }
   
   public static int getArrayMaxNumber(int[] array){
@@ -101,5 +105,13 @@ public class Kata{
       total += array[i];
     }
     return total;
+  }
+  
+  public static boolean isPalindrome(String string){
+    char[] stringChars = string.toCharArray();
+    for (int i = 0; i < stringChars.length; i++){
+      if(stringChars[i] != stringChars[stringChars.length - i-1]) return false;
+    }
+    return true;
   }
 }
