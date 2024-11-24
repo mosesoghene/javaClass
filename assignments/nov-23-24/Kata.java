@@ -29,6 +29,10 @@ public class Kata{
     System.out.println(Arrays.toString(joinArray(array, array)));
     System.out.println(Arrays.toString(joinArrayAltElemtnts(array, array)));
     System.out.println(Arrays.toString(toIntArray(2342)));
+    
+    System.out.println(isEven(2342.0));
+    System.out.println(isEven(2));
+    
   }
   
   public static int getArrayMaxNumber(int[] array){
@@ -187,4 +191,18 @@ public class Kata{
     for(int i = 0; i < numberArray.length; i++) numberArray[i] = Character.digit(numbers[i], 10);
     return numberArray;
   }
+  
+  public static boolean isEven(int number){
+    return (number % 2 == 0) ? true : false;
+  }
+  
+  public static boolean isEven(double number){
+    return (number % 2 == 0) ? true : false;
+  }
+  
+  public static boolean isPrime(int number):
+  return (number == 2) ? true : false:
+  
+  for(int i = 3; i < number; i++) if (number % i == 0) return false;
+  return true;
 }
