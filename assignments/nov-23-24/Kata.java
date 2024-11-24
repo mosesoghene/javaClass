@@ -24,15 +24,20 @@ public class Kata{
     
     System.out.println(isPalindrome("toot"));
     
-    System.out.println(isPalindrome("eme"));
+    System.out.println(isPalindrome(45154));
     
     System.out.println(Arrays.toString(joinArray(array, array)));
     System.out.println(Arrays.toString(joinArrayAltElemtnts(array, array)));
     System.out.println(Arrays.toString(toIntArray(2342)));
     
     System.out.println(isEven(2342.0));
-    System.out.println(isEven(2));
-    
+    System.out.println(isPrime(4));
+    System.out.println(subtract(7, 3));
+    System.out.println(factorOf(10));
+    System.out.println(isSquare(9));    
+    System.out.println(isPalindrome(45155));
+    System.out.println(factorialOf(5));
+    System.out.println(squareOf(5));
   }
   
   public static int getArrayMaxNumber(int[] array){
@@ -200,9 +205,52 @@ public class Kata{
     return (number % 2 == 0) ? true : false;
   }
   
-  public static boolean isPrime(int number):
-  return (number == 2) ? true : false:
+  public static boolean isPrime(int number){
+    if (number <= 1) return false;
+    if (number == 2) return true;
+    for (int i = 2; i < number; i++){
+      if (number % i == 0) return false;
+    }
+    return true;
+  }
   
-  for(int i = 3; i < number; i++) if (number % i == 0) return false;
-  return true;
+  public static int subtract(int x, int y){
+    return Math.abs(x - y);
+  }
+  
+  public static int divide(int x, int y){
+    if (y == 0) return y;
+    return x / y;
+  }
+  
+  public static int factorOf(int number){
+    int count = 0;
+    for (int i = 1; i <= number; i++) if (number % i == 0) count += 1;
+    return count;
+  }
+  
+  public static boolean isSquare(int number){
+    for (int i = 1; i < number; i++)
+      if (i * i == number) return true;
+    return false;
+  }
+  
+  public static boolean isPalindrome(int number){
+    String numberToString = "" + number;
+    char[] stringChars = numberToString.toCharArray();
+    for (int i = 0; i < stringChars.length; i++){
+      if(stringChars[i] != stringChars[stringChars.length - i-1]) return false;
+    }
+    return true;
+  }
+  
+  public static long factorialOf(int number){
+    long factorial = 1;
+    for (int i = number; i > 0; i--) factorial *= i;
+    return factorial;
+  }
+  
+  public static long squareOf(int number){
+    return number * number;
+  }
 }
