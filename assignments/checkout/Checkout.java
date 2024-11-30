@@ -23,11 +23,24 @@ public class Checkout{
     double subt = getSubTotal(productPrices, numberOfPieces);
     double disc = getDiscount(getSubTotal(productPrices, numberOfPieces), 8);
     double vat = getVAT(subt, disc, 17.5);
+    double billTotal = getBillTotal(subt, vat, disc);
     
     System.out.println(productNames +" "+ numberOfPieces +" "+ productPrices );
-    System.out.println("SubTotal: "+ subt +" Discount: "+ disc +"VAT @ 7.5%: " + vat);
+    System.out.println("SubTotal: "+ subt +" Discount: "+ disc +" VAT @ 7.5%: " + vat +" Bill Total: "+ billTotal);
+    checkout(billTotal);
     
   }
+  
+  private static void checkout(double billTotal){
+    prompt("How much did they give you?");
+    double amountPaid = scan.nextDouble();
+    prompt("Total Balance " + (amountPaid - billTotal));
+  }
+  
+  private static double getBillTotal(double subTotal, double vat, double discount){
+    double billTotal =  subTotal + vat - discount;
+    return billTotal;
+  } 
   
   private static double getSubTotal(ArrayList<Double> prices, ArrayList<Integer> cartCounts){
     return IntStream.range(0, prices.size())
