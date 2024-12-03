@@ -19,6 +19,7 @@ public class StudentGrade{
     savingNotice();
     int[][] studentScores = collectStudentScoresFor(studentNumber, subjectNumber);
     printScoreTable(studentScores);
+    printSubjectStatistics(studentScores);
     
     
     
@@ -31,14 +32,14 @@ public class StudentGrade{
   }
   
   private static void printScoreTable(int[][] studentScores){
-    totalScores = getTotalScores(studentScores);
+    int[] totalScores = getTotalScores(studentScores);
     
     System.out.println("===========================================================");
     System.out.printf("| %-9s ", "STUDENT");
     for (int i = 0; i < studentScores[0].length; i++){
       System.out.printf("| SUB%2d ", i+1);      
     }    
-    System.out.printf("| %5s | %5s | %5s |%n", "TOT", "AVE", "POS");
+    System.out.printf("| %5s | %5s | %3s |%n", "TOT", "AVE", "POS");
     System.out.println("===========================================================");
     
     for (int student = 0; student < studentScores.length; student++){
@@ -47,7 +48,11 @@ public class StudentGrade{
         System.out.printf("| %5d ", studentScores[student][score]);
       }      
       
-      System.out.printf("| %5d | %5.2f | %3d |%n", getTotalOf(studentScores[student]), getAverageOf(studentScores[student]), ArrayUtils.indexOf(totalScores, getTotalOf(studentScores[student])) );
+      System.out.printf("| %5d | %5.2f ", getTotalOf(studentScores[student]), getAverageOf(studentScores[student]));
+      for (int i = 0; i < totalScores.length; i++){
+        if (totalScores[i] == getTotalOf(studentScores[student]))
+        System.out.printf("| %3d |%n", totalScores.length - i);
+      }
     }
   }
   
@@ -59,11 +64,39 @@ public class StudentGrade{
       for (int subjectIndex = 0; subjectIndex < subjectNumber; subjectIndex++){
         System.out.printf("Entering score for student %d%nEnter score for subject %d%n", studentIndex + 1, subjectIndex + 1);
         int score = input.nextInt();
-        studentScores[studentIndex][subjectIndex] = score;
+        if (score >= 0 && score <= 100){
+          studentScores[studentIndex][subjectIndex] = score;
+        } else {
+          System.out.println("INVALID SCORE: must be between 0 - 100");
+          subjectIndex--;
+        }
       }
     }
     
     return studentScores;
+  }
+  
+  
+  private static void printSubjectStatistics(int[][] studentScores){
+    int[] totalScores = getTotalScores(studentScores);    
+    
+    
+    int highestScoringStudent = 0;
+    int lowestScoringStudent = 0;
+    
+    for (int i = 0; i < studentScores.length; i++){
+      System.out.printf("Subject %d%n", i + 1);
+      if (totalScores[totalScores.length - 1] == getTotalOf(studentScores[i])){
+        highestScoringStudent = i;
+      }
+      if (totalScores[i] == getTotalOf(studentScores[i])){
+        lowestScoringStudent = i;
+      }   
+      System.out.printf("Highest Scoring student is: Student %d Scoring %n", highestScoringStudent); 
+      System.out.printf("Lowest Scoring student is: Student %d Scoring %n", lowestScoringStudent);
+    }
+    
+    System.out.printf("Best Graduating student is: ");
   }
   
   private static int getTotalOf(int[] studentScores){
@@ -79,7 +112,7 @@ public class StudentGrade{
     for(int i = 0; i < studentScores.length; i++){
       totalScores[i] = IntStream.of(studentScores[i]).sum();
     }
-    return totalScores;
+    return IntStream.of(totalScores).sorted().toArray();
   }
   
   
