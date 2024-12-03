@@ -1,10 +1,12 @@
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
-import java.util.Comparator;
 
 
 public class StudentGrade{
+
+  private static Scanner scanner = new Scanner(System.in);
+  
   public static void main(String[] args){
   
     Scanner input = new Scanner(System.in);
@@ -15,13 +17,9 @@ public class StudentGrade{
     System.out.println("How many subjects do they offer?");
     int subjectNumber = input.nextInt();
     savingNotice();
-
-    int[][] studentScores = collectStudentScoresFor(studentNumber, subjectNumber);
+    
+    int[][] scores = collectAllScores(studentNumber, subjectNumber);    
     savingNotice();
-    
-    printScoreTable(studentScores);
-    printSubjectStatistics(studentScores);
-    
     
   }
   
@@ -90,24 +88,15 @@ public class StudentGrade{
       return sorted;
   }
   
-  public static int[][] collectStudentScoresFor(int studentNumber, int subjectNumber){
-    Scanner input = new Scanner(System.in);
-    int[][] studentScores = new int[studentNumber][subjectNumber];
-    
-    for (int studentIndex = 0; studentIndex < studentNumber; studentIndex++){
-      for (int subjectIndex = 0; subjectIndex < subjectNumber; subjectIndex++){
-        System.out.printf("Entering score for student %d%nEnter score for subject %d%n", studentIndex + 1, subjectIndex + 1);
-        int score = input.nextInt();
-        if (score >= 0 && score <= 100){
-          studentScores[studentIndex][subjectIndex] = score;
-        } else {
-          System.out.println("INVALID SCORE: must be between 0 - 100");
-          subjectIndex--;
+  public static int[][] collectAllScores(int studentNumber, int subjectNumber){
+    int[][] scores = new int[numStudents][numSubjects];
+        for (int i = 0; i < numStudents; i++) {
+            System.out.println("\nEntering scores for Student " + (i + 1));
+            for (int j = 0; j < numSubjects; j++) {
+                scores[i][j] = getValidScore(j);
+            }
         }
-      }
-    }
-    
-    return studentScores;
+        return scores;
   }
   
   
