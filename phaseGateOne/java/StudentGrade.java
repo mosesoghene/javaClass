@@ -21,6 +21,12 @@ public class StudentGrade{
     int[][] scores = collectAllScores(studentNumber, subjectNumber);    
     savingNotice();
     
+    int[] studentTotals = calculateTotals(scores);
+    double[] studentAverages = calculateAverages(studentTotals, subjectNumber);
+    int[] positions = calculateStudentPositions(studentTotals);
+
+    displayResultsTable(scores, studentTotals, studentAverages, positions);
+    displaySubjectSummaries(scores);
     
     
   }
@@ -29,29 +35,41 @@ public class StudentGrade{
     System.out.println("Saving >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\nSaved succesfully\n");
   }
   
+  private static void displaySubjectSummaries(int[][] scores) {
+    for (int subject = 0; subject < scores[0].length; subject++) {
+      int[] stats = calculateSubjectStatistics(scores, subject);
+      System.out.println("\nSubject Summary:");
+      System.out.printf("\nSubject %d\n", subject + 1);
+      System.out.printf("Highest scoring student is: Student %d Scoring %d\n", stats[2] + 1, stats[0]);
+      System.out.printf("Lowest scoring student is: Student %d Scoring %d)\n", stats[3] + 1, stats[1]);      
+      System.out.printf("Number of passes: %d\n", stats[4]);
+      System.out.printf("Number of Fails: %d\n", scores.length - stats[4]);
+    }
+  }
+  
   private static void displayResultsTable(int[][] scores, int[] totals, double[] averages, int[] positions) {
     System.out.println("\nClass Score Summary:");
-    System.out.print("| STUDENT ");
+    System.out.print("| STUDENT   ");
     for (int i = 1; i <= scores[0].length; i++) {
-      System.out.printf("| SUB%-4d", i);
+      System.out.printf("| SUB%2d", i);
     }
-    System.out.println("| TOT  |  AVE  |  POSITION");
-
+    System.out.printf("| %4s | %6s | %2s |\n", "TOT", "AVE", "POS");
+    System.out.println("=================================================>>");
     for (int i = 0; i < scores.length; i++) {
-      System.out.printf("| Student %7d ", (i + 1));
+      System.out.printf("| Student %d ", (i + 1));
       for (int j = 0; j < scores[i].length; j++) {
-        System.out.printf("| %7d", scores[i][j]);
+        System.out.printf("| %4d ", scores[i][j]);
       }
-      System.out.printf("| %6d | %6.2f | %d |\n", totals[i], averages[i], positions[i]);
+      System.out.printf("| %4d | %4.2f | %2d |\n", totals[i], averages[i], positions[i]);
     }
   }
     
   
   public static int[][] collectAllScores(int studentNumber, int subjectNumber){
-    int[][] scores = new int[numStudents][numSubjects];
-    for (int i = 0; i < numStudents; i++) {
+    int[][] scores = new int[studentNumber][subjectNumber];
+    for (int i = 0; i < studentNumber; i++) {
       System.out.println("\nEntering scores for Student " + (i + 1));
-      for (int j = 0; j < numSubjects; j++) {
+      for (int j = 0; j < subjectNumber; j++) {
         scores[i][j] = getValidScore(j);
       }
     }
@@ -70,26 +88,37 @@ public class StudentGrade{
     return score;
   }
   
-  public static void printSubjectStatistics(int[][] studentScores){
-    int[] totalScores = getTotalScores(studentScores);    
+  private static int[] calculateSubjectStatistics(int[][] scores, int subject) {
+    int highest = 0; 
+    int lowest = 100;
+    int highestStudent = 0; 
+    int lowestStudent = 0; 
+    int passes = 0;
     
-    
-    int highestScoringStudent = 0;
-    int lowestScoringStudent = 0;
-    
-    for (int i = 0; i < studentScores.length; i++){
-      System.out.printf("Subject %d%n", i + 1);
-      if (totalScores[totalScores.length - 1] == getTotalOf(studentScores[i])){
-        highestScoringStudent = i;
+    for (int student = 0; student < scores.length; student++) {
+      if (scores[student][subject] > highest) {
+        highest = scores[student][subject];
+        highestStudent = student;
       }
-      if (totalScores[i] == getTotalOf(studentScores[i])){
-        lowestScoringStudent = i;
-      }   
-      System.out.printf("Highest Scoring student is: Student %d Scoring %n", highestScoringStudent); 
-      System.out.printf("Lowest Scoring student is: Student %d Scoring %n", lowestScoringStudent);
+      if (scores[student][subject] < lowest) {
+        lowest = scores[student][subject];
+        lowestStudent = student;
+      }
+      if (scores[student][subject] >= 50) passes++;
     }
     
-    System.out.printf("Best Graduating student is: ");
+    return new int[]{highest, lowest, highestStudent, lowestStudent, passes};
+  }
+  
+  private static int[] calculateSubjectPasses(int[][] scores) {
+    int[] subjectPasses = new int[scores[0].length];
+    for (int j = 0; j < scores[0].length; j++) {
+      for (int i = 0; i < scores.length; i++) {
+        if (scores[i][j] >= 50) 
+          subjectPasses[j]++;
+      }
+    }
+    return subjectPasses;
   }
   
   private static double[] calculateAverages(int[] totals, int numSubjects) {
@@ -124,6 +153,12 @@ public class StudentGrade{
     return totals;
   }
   
-
+  private static int calculateTotalClassScore(int[] totals) {
+    int sum = 0;
+    for (int total : totals) {
+      sum += total;
+    }
+    return sum;
+  }
   
 }
