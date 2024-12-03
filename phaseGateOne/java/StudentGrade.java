@@ -52,9 +52,11 @@ public class StudentGrade{
     System.out.print("| STUDENT   ");
     for (int i = 1; i <= scores[0].length; i++) {
       System.out.printf("| SUB%2d", i);
-    }
+    }    
     System.out.printf("| %4s | %6s | %2s |\n", "TOT", "AVE", "POS");
+    
     System.out.println("=================================================>>");
+    
     for (int i = 0; i < scores.length; i++) {
       System.out.printf("| Student %d ", (i + 1));
       for (int j = 0; j < scores[i].length; j++) {
@@ -63,6 +65,42 @@ public class StudentGrade{
       System.out.printf("| %4d | %4.2f | %2d |\n", totals[i], averages[i], positions[i]);
     }
   }
+  
+  private static void displayOverallAnalysis(int[][] scores, int[] totals,double[] averages) {
+        int[] subjectPasses = calculateSubjectPasses(scores);
+        int[] overallStats = calculateOverallHighestLowest(scores);
+        int[] subjectDifficulty = findSubjectDifficulty(subjectPasses, scores.length);
+        int[] bestWorst = findBestAndWorstStudents(averages);
+        int totalClassScore = calculateTotalClassScore(totals);
+
+        System.out.println("\nOverall Class Summary:");
+        
+        
+        System.out.printf("Hardest Subject is Subject %d with %d failures\n",
+                         subjectDifficulty[0] + 1,
+                         scores.length - subjectPasses[subjectDifficulty[0]]);
+        System.out.printf("Easiest Subject is Subject %d with %d Passes\n",
+                         subjectDifficulty[1] + 1, 
+                         subjectPasses[subjectDifficulty[1]]);
+        
+        
+        System.out.printf("Overall Highest Score is scored by Student %d in Subject %d scoring %d\n",
+                          overallStats[2] + 1, overallStats[4] + 1, overallStats[0]);
+        System.out.printf("Overall Lowest Score is Student %d in Subject %d scoring %d)\n",
+                         overallStats[3] + 1, overallStats[5] + 1, overallStats[1]);
+        
+        
+        System.out.printf("Best Graduating Student: Student %d (Average: %.2f)\n",
+                         bestWorst[0] + 1, averages[bestWorst[0]]);
+        System.out.printf("Worst Graduating Student: Student %d (Average: %.2f)\n",
+                         bestWorst[1] + 1, averages[bestWorst[1]]);
+        
+        double classAverage = (double) totalClassScore / (scores.length * scores[0].length);
+        System.out.printf("Class Total Score: %d\n", totalClassScore);
+        System.out.printf("Class Average Score: %.2f\n", classAverage);
+    }
+
+  
     
   
   public static int[][] collectAllScores(int studentNumber, int subjectNumber){
@@ -161,4 +199,57 @@ public class StudentGrade{
     return sum;
   }
   
+  private static int[] calculateOverallHighestLowest(int[][] scores) {
+    int highest = 0, lowest = 100;
+    int highestStudent = 0, lowestStudent = 0;
+    int highestSubject = 0, lowestSubject = 0;
+    
+    for (int i = 0; i < scores.length; i++) {
+      for (int j = 0; j < scores[i].length; j++) {
+        if (scores[i][j] > highest) {
+          highest = scores[i][j];
+          highestStudent = i;
+          highestSubject = j;
+        }
+        if (scores[i][j] < lowest) {
+          lowest = scores[i][j];
+          lowestStudent = i;
+          lowestSubject = j;
+        }
+      }
+    }
+    
+    return new int[]{highest, lowest, highestStudent, lowestStudent, highestSubject, lowestSubject};
+  }
+  
+  private static int[] findBestAndWorstStudents(double[] averages) {
+    int bestStudent = 0, worstStudent = 0;
+    for (int i = 1; i < averages.length; i++) {
+      if (averages[i] > averages[bestStudent]) {
+        bestStudent = i;
+      }
+      if (averages[i] < averages[worstStudent]) {
+        worstStudent = i;
+      }
+    }
+    return new int[]{bestStudent, worstStudent};
+  }
+  
+  private static int[] findSubjectDifficulty(int[] subjectPasses, int numStudents) {
+    int hardest = 0, easiest = 0;
+    int minPasses = numStudents, maxPasses = 0;
+    
+    for (int i = 0; i < subjectPasses.length; i++) {
+      if (subjectPasses[i] < minPasses) {
+        minPasses = subjectPasses[i];
+        hardest = i;
+      }
+      if (subjectPasses[i] > maxPasses) {
+        maxPasses = subjectPasses[i];
+        easiest = i;
+      }
+    }
+    
+    return new int[]{hardest, easiest};
+  }
 }
