@@ -21,41 +21,31 @@ public class StudentGrade{
     int[][] scores = collectAllScores(studentNumber, subjectNumber);    
     savingNotice();
     
+    
+    
   }
   
   public static void savingNotice(){
     System.out.println("Saving >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\nSaved succesfully\n");
   }
   
-  public static void printScoreTable(int[][] studentScores){
-    int[] totalScores = getTotalScores(studentScores);
-    int[][] studentPosition = getStudentPosition(studentScores);
-    System.out.println("===========================================================");
-    System.out.printf("| %-9s ", "STUDENT");
-    for (int i = 0; i < studentScores[0].length; i++){
-      System.out.printf("| SUB%2d ", i+1);      
-    }    
-    System.out.printf("| %5s | %5s | %3s |%n", "TOT", "AVE", "POS");
-    System.out.println("===========================================================");
-    
-    for (int student = 0; student < studentScores.length; student++){
-      int total = 0;
-      System.out.printf("| Student %d ", student + 1);
-      for (int score = 0; score < studentScores[student].length; score++){
-        System.out.printf("| %5d ", studentScores[student][score]);
-        total += studentScores[student][score];
-      }      
-      
-      System.out.printf("| %5d | %5.2f |%n", getTotalOf(studentScores[student]), getAverageOf(studentScores[student]));
-      /*
-      for (int i = 0; i < totalScores.length; i++){
-        if (studentPosition[totalScores.length - 1][1] == getTotalOf(studentScores[student])){
-          System.out.printf("| %3d |%n", studentPosition[0][i]);
-        }
-      }*/
+  private static void displayResultsTable(int[][] scores, int[] totals, double[] averages, int[] positions) {
+    System.out.println("\nClass Score Summary:");
+    System.out.print("| STUDENT ");
+    for (int i = 1; i <= scores[0].length; i++) {
+      System.out.printf("| SUB%-4d", i);
+    }
+    System.out.println("| TOT  |  AVE  |  POSITION");
+
+    for (int i = 0; i < scores.length; i++) {
+      System.out.printf("| Student %7d ", (i + 1));
+      for (int j = 0; j < scores[i].length; j++) {
+        System.out.printf("| %7d", scores[i][j]);
+      }
+      System.out.printf("| %6d | %6.2f | %d |\n", totals[i], averages[i], positions[i]);
     }
   }
-  
+    
   public static int[][] getStudentPosition(int[][] totalScores){
     Integer[][] array = new Integer[2][totalScores[0].length];
     Integer[][] mappedArray = new Integer[2][totalScores[0].length];
@@ -90,15 +80,26 @@ public class StudentGrade{
   
   public static int[][] collectAllScores(int studentNumber, int subjectNumber){
     int[][] scores = new int[numStudents][numSubjects];
-        for (int i = 0; i < numStudents; i++) {
-            System.out.println("\nEntering scores for Student " + (i + 1));
-            for (int j = 0; j < numSubjects; j++) {
-                scores[i][j] = getValidScore(j);
-            }
-        }
-        return scores;
+    for (int i = 0; i < numStudents; i++) {
+      System.out.println("\nEntering scores for Student " + (i + 1));
+      for (int j = 0; j < numSubjects; j++) {
+        scores[i][j] = getValidScore(j);
+      }
+    }
+    return scores;
   }
   
+  private static int getValidScore(int subject) {
+    int score;
+    do {
+      System.out.print("Enter score for Subject " + (subject + 1) + ": ");
+      score = scanner.nextInt();
+      if (score < 0 || score > 100) {
+        System.out.println("Invalid score! Score must be between 0 and 100.");
+      }
+    } while (score < 0 || score > 100);
+    return score;
+  }
   
   public static void printSubjectStatistics(int[][] studentScores){
     int[] totalScores = getTotalScores(studentScores);    
@@ -122,21 +123,38 @@ public class StudentGrade{
     System.out.printf("Best Graduating student is: ");
   }
   
-  public static int getTotalOf(int[] studentScores){
-    return IntStream.of(studentScores).sum();
-  }
-  
-  public static double getAverageOf(int[] studentScores){
-    return IntStream.of(studentScores).average().getAsDouble();
-  }
-  
-   public static int[] getTotalScores(int[][] studentScores){
-    int[] totalScores = new int[studentScores.length];
-    for(int i = 0; i < studentScores.length; i++){  
-      totalScores[i] = IntStream.of(studentScores[i]).sum();
+  private static double[] calculateAverages(int[] totals, int numSubjects) {
+    double[] averages = new double[totals.length];
+    for (int i = 0; i < totals.length; i++) {
+      averages[i] = (double) totals[i] / numSubjects;
     }
-    return totalScores;
+    return averages;
   }
   
+  private static int[] calculateStudentPositions(int[] totals) {
+    int[] positions = new int[totals.length];
+    for (int i = 0; i < totals.length; i++) {
+      int position = 1;
+      for (int j = 0; j < totals.length; j++) {
+        if (totals[j] > totals[i]) {
+          position++;
+        }
+      }
+      positions[i] = position;
+    }
+    return positions;
+  }
+  
+  private static int[] calculateTotals(int[][] scores) {
+    int[] totals = new int[scores.length];
+    for (int i = 0; i < scores.length; i++) {
+      for (int j = 0; j < scores[i].length; j++) {
+        totals[i] += scores[i][j];
+      }
+    }
+    return totals;
+  }
+  
+
   
 }
