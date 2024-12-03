@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
+import java.util.Comparator;
 
 
 public class StudentGrade{
@@ -40,9 +41,11 @@ public class StudentGrade{
     System.out.println("===========================================================");
     
     for (int student = 0; student < studentScores.length; student++){
+      int total = 0;
       System.out.printf("| Student %d ", student + 1);
       for (int score = 0; score < studentScores[student].length; score++){
         System.out.printf("| %5d ", studentScores[student][score]);
+        total += studentScores[student][score];
       }      
       
       System.out.printf("| %5d | %5.2f ", getTotalOf(studentScores[student]), getAverageOf(studentScores[student]));
@@ -51,6 +54,21 @@ public class StudentGrade{
         System.out.printf("| %3d |%n", studentScores.length);
       }
     }
+  }
+  
+  public static int[][] getStudentPosition(int[][] totalScores){
+    int[][] array = totalScores;
+    int[][] mappedArray = totalScores;
+    Arrays.sort(mappedArray[1], Comparator.comparingInt(a -> a));
+        for (int i = 0; i < mappedArray[1].length; i++) {
+            for (int j = 0; j < array[1].length; j++) {
+                if (mappedArray[1][i].equals(array[1][j])) {
+                    mappedArray[0][i] = array[0][j];
+                    break;
+                }
+            }
+        }
+      return mappedArray;
   }
   
   public static int[][] collectStudentScoresFor(int studentNumber, int subjectNumber){
@@ -75,7 +93,7 @@ public class StudentGrade{
   
   
   public static void printSubjectStatistics(int[][] studentScores){
-    int[] totalScores = getTotalScores(studentScores);    
+    int[][] totalScores = getTotalScores(studentScores);    
     
     
     int highestScoringStudent = 0;
@@ -83,10 +101,10 @@ public class StudentGrade{
     
     for (int i = 0; i < studentScores.length; i++){
       System.out.printf("Subject %d%n", i + 1);
-      if (totalScores[totalScores.length - 1] == getTotalOf(studentScores[i])){
+      if (totalScores[totalScores.length - 1][1] == getTotalOf(studentScores[i])){
         highestScoringStudent = i;
       }
-      if (totalScores[i] == getTotalOf(studentScores[i])){
+      if (totalScores[i][1] == getTotalOf(studentScores[i])){
         lowestScoringStudent = i;
       }   
       System.out.printf("Highest Scoring student is: Student %d Scoring %n", highestScoringStudent); 
@@ -104,12 +122,13 @@ public class StudentGrade{
     return IntStream.of(studentScores).average().getAsDouble();
   }
   
-   public static int[] getTotalScores(int[][] studentScores){
-    int[] totalScores = new int[studentScores.length];
-    for(int i = 0; i < studentScores.length; i++){
-      totalScores[i] = IntStream.of(studentScores[i]).sum();
+   public static int[][] getTotalScores(int[][] studentScores){
+    int[][] totalScores = new int[2][studentScores.length];
+    for(int i = 0; i < studentScores.length; i++){    
+      totalScores[0][i] = i;
+      totalScores[1][i] = IntStream.of(studentScores[i]).sum();
     }
-    return IntStream.of(totalScores).sorted().toArray();
+    return totalScores;
   }
   
   
