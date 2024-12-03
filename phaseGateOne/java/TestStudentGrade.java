@@ -10,6 +10,11 @@ public class TestStudentGrade{
     assertEquals(expected, actual);
   }
   
-  
-  
+  @Test
+  public void testThatgetTotalScoresReturnsCorrectResult(){
+    int[][] studentScores = {{1,2,3,1,2,3},{1,2,3,4,5}};
+    int[] actual = StudentGrade.getTotalScores(studentScores);
+    int[] expected = {12, 15};
+    assertArrayEquals(expected, actual);
+  }
 }
