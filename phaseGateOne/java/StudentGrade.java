@@ -46,37 +46,6 @@ public class StudentGrade{
     }
   }
     
-  public static int[][] getStudentPosition(int[][] totalScores){
-    Integer[][] array = new Integer[2][totalScores[0].length];
-    Integer[][] mappedArray = new Integer[2][totalScores[0].length];
-    for (int i = 0; i < array[0].length; i++){
-        array[0][i] = totalScores[0][i];
-        array[1][i] = totalScores[1][i];
-        mappedArray[0][i] = totalScores[0][i];
-        mappedArray[1][i] = totalScores[1][i];
-      }
-    
-    int[][] sorted = new int[2][mappedArray.length];
-    
-    Arrays.sort(mappedArray[1], Comparator.comparingInt(a -> a));
-        for (int i = 0; i < mappedArray[1].length; i++) {
-            for (int j = 0; j < array[1].length; j++) {
-                if (mappedArray[1][i].equals(array[1][j])) {
-                    mappedArray[0][i] = array[0][j];
-                    break;
-                }
-            }
-        }
-      
-     
-      for (int i = 0; i < sorted[0].length; i++){
-        sorted[0][i] = mappedArray[0][i];
-        sorted[1][i] = mappedArray[1][i];
-      }
-        
-      
-      return sorted;
-  }
   
   public static int[][] collectAllScores(int studentNumber, int subjectNumber){
     int[][] scores = new int[numStudents][numSubjects];
