@@ -1,10 +1,8 @@
-student_scores = []
-
 student_number = int(input("How many students do you have? \n"))
 subject_number = int(input("How many Subjects do they offer? \n"))
 
 def collect_scores(student_number, subject_number):
-    student_scores []
+    student_scores = []
     
     for student in range(1, student_number + 1):
         student_scores.append({student: []})
@@ -19,7 +17,19 @@ def collect_scores(student_number, subject_number):
     return student_scores
     
     
-for i in student_scores:
-    for j in i:
-        print(j, i.get(j))
-print(student_scores)
+def get_total_score_of(student_scores):
+    return max(student_scores)
+
+def get_average_score_of(student_scores):
+    return sum(student_scores) / len(student_scores)
+
+def get_all_student_totals(scores_db):
+    all_student_total_scores = []
+    for i in range(1, len(scores_db) + 1):    
+        all_student_total_scores.append(max(scores_db[i-1].get(i)))
+        
+    return all_student_total_scores
+
+scores_db = collect_scores(student_number, subject_number)
+print(get_all_student_totals(scores_db))
+    
