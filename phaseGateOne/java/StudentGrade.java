@@ -31,7 +31,7 @@ public class StudentGrade{
   
   public static void printScoreTable(int[][] studentScores){
     int[] totalScores = getTotalScores(studentScores);
-    
+    int[][] studentPosition = getStudentPosition(studentScores);
     System.out.println("===========================================================");
     System.out.printf("| %-9s ", "STUDENT");
     for (int i = 0; i < studentScores[0].length; i++){
@@ -48,17 +48,28 @@ public class StudentGrade{
         total += studentScores[student][score];
       }      
       
-      System.out.printf("| %5d | %5.2f ", getTotalOf(studentScores[student]), getAverageOf(studentScores[student]));
+      System.out.printf("| %5d | %5.2f |%n", getTotalOf(studentScores[student]), getAverageOf(studentScores[student]));
+      /*
       for (int i = 0; i < totalScores.length; i++){
-        if (totalScores[totalScores.length - 1] == getTotalOf(studentScores[student]))
-        System.out.printf("| %3d |%n", studentScores.length);
-      }
+        if (studentPosition[totalScores.length - 1][1] == getTotalOf(studentScores[student])){
+          System.out.printf("| %3d |%n", studentPosition[0][i]);
+        }
+      }*/
     }
   }
   
-  public static Integer[][] getStudentPosition(int[][] totalScores){
-    Integer[][] array = totalScores;
-    Integer[][] mappedArray = totalScores;
+  public static int[][] getStudentPosition(int[][] totalScores){
+    Integer[][] array = new Integer[2][totalScores[0].length];
+    Integer[][] mappedArray = new Integer[2][totalScores[0].length];
+    for (int i = 0; i < array[0].length; i++){
+        array[0][i] = totalScores[0][i];
+        array[1][i] = totalScores[1][i];
+        mappedArray[0][i] = totalScores[0][i];
+        mappedArray[1][i] = totalScores[1][i];
+      }
+    
+    int[][] sorted = new int[2][mappedArray.length];
+    
     Arrays.sort(mappedArray[1], Comparator.comparingInt(a -> a));
         for (int i = 0; i < mappedArray[1].length; i++) {
             for (int j = 0; j < array[1].length; j++) {
@@ -69,7 +80,14 @@ public class StudentGrade{
             }
         }
       
-      return mappedArray;
+     
+      for (int i = 0; i < sorted[0].length; i++){
+        sorted[0][i] = mappedArray[0][i];
+        sorted[1][i] = mappedArray[1][i];
+      }
+        
+      
+      return sorted;
   }
   
   public static int[][] collectStudentScoresFor(int studentNumber, int subjectNumber){
@@ -94,7 +112,7 @@ public class StudentGrade{
   
   
   public static void printSubjectStatistics(int[][] studentScores){
-    int[][] totalScores = getTotalScores(studentScores);    
+    int[] totalScores = getTotalScores(studentScores);    
     
     
     int highestScoringStudent = 0;
@@ -102,10 +120,10 @@ public class StudentGrade{
     
     for (int i = 0; i < studentScores.length; i++){
       System.out.printf("Subject %d%n", i + 1);
-      if (totalScores[totalScores.length - 1][1] == getTotalOf(studentScores[i])){
+      if (totalScores[totalScores.length - 1] == getTotalOf(studentScores[i])){
         highestScoringStudent = i;
       }
-      if (totalScores[i][1] == getTotalOf(studentScores[i])){
+      if (totalScores[i] == getTotalOf(studentScores[i])){
         lowestScoringStudent = i;
       }   
       System.out.printf("Highest Scoring student is: Student %d Scoring %n", highestScoringStudent); 
@@ -123,11 +141,10 @@ public class StudentGrade{
     return IntStream.of(studentScores).average().getAsDouble();
   }
   
-   public static int[][] getTotalScores(int[][] studentScores){
-    int[][] totalScores = new int[2][studentScores.length];
-    for(int i = 0; i < studentScores.length; i++){    
-      totalScores[0][i] = i;
-      totalScores[1][i] = IntStream.of(studentScores[i]).sum();
+   public static int[] getTotalScores(int[][] studentScores){
+    int[] totalScores = new int[studentScores.length];
+    for(int i = 0; i < studentScores.length; i++){  
+      totalScores[i] = IntStream.of(studentScores[i]).sum();
     }
     return totalScores;
   }
