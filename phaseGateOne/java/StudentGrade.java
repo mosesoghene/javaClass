@@ -27,7 +27,7 @@ public class StudentGrade{
 
     displayResultsTable(scores, studentTotals, studentAverages, positions);
     displaySubjectSummaries(scores);
-    
+    displayOverallAnalysis(scores, studentTotals, studentAverages);
     
   }
   
@@ -41,7 +41,8 @@ public class StudentGrade{
       System.out.println("\nSubject Summary:");
       System.out.printf("\nSubject %d\n", subject + 1);
       System.out.printf("Highest scoring student is: Student %d Scoring %d\n", stats[2] + 1, stats[0]);
-      System.out.printf("Lowest scoring student is: Student %d Scoring %d)\n", stats[3] + 1, stats[1]);      
+      System.out.printf("Lowest scoring student is: Student %d Scoring %d\n", stats[3] + 1, stats[1]);
+      System.out.printf("Total Score is: %d\n", stats[5]);      
       System.out.printf("Number of passes: %d\n", stats[4]);
       System.out.printf("Number of Fails: %d\n", scores.length - stats[4]);
     }
@@ -49,13 +50,14 @@ public class StudentGrade{
   
   private static void displayResultsTable(int[][] scores, int[] totals, double[] averages, int[] positions) {
     System.out.println("\nClass Score Summary:");
+    System.out.println("<<================================================================================>>");
     System.out.print("| STUDENT   ");
     for (int i = 1; i <= scores[0].length; i++) {
       System.out.printf("| SUB%2d", i);
     }    
     System.out.printf("| %4s | %6s | %2s |\n", "TOT", "AVE", "POS");
     
-    System.out.println("=================================================>>");
+    System.out.println("<<================================================================================>>");
     
     for (int i = 0; i < scores.length; i++) {
       System.out.printf("| Student %d ", (i + 1));
@@ -63,7 +65,10 @@ public class StudentGrade{
         System.out.printf("| %4d ", scores[i][j]);
       }
       System.out.printf("| %4d | %4.2f | %2d |\n", totals[i], averages[i], positions[i]);
-    }
+    }    
+    System.out.println("<<================================================================================>>\n");
+    
+    System.out.println("<<================================================================================>>");
   }
   
   private static void displayOverallAnalysis(int[][] scores, int[] totals,double[] averages) {
@@ -87,17 +92,27 @@ public class StudentGrade{
         System.out.printf("Overall Highest Score is scored by Student %d in Subject %d scoring %d\n",
                           overallStats[2] + 1, overallStats[4] + 1, overallStats[0]);
         System.out.printf("Overall Lowest Score is Student %d in Subject %d scoring %d)\n",
-                         overallStats[3] + 1, overallStats[5] + 1, overallStats[1]);
+                         overallStats[3] + 1, overallStats[5] + 1, overallStats[1]);        
+        System.out.println("<<================================================================================>>");
+        System.out.println();
+        System.out.println("CLASS SUMMARY");
+        System.out.println("<<================================================================================>>");
         
-        
-        System.out.printf("Best Graduating Student: Student %d (Average: %.2f)\n",
+        System.out.printf("Best Graduating Student is: Student %d  with an average: %.2f\n",
                          bestWorst[0] + 1, averages[bestWorst[0]]);
-        System.out.printf("Worst Graduating Student: Student %d (Average: %.2f)\n",
+        System.out.println("<<================================================================================>>");
+        System.out.println();
+        System.out.println("<<================================================================================>>");
+        System.out.printf("Worst Graduating Student is: Student %d  with an average: %.2f\n",
                          bestWorst[1] + 1, averages[bestWorst[1]]);
+        System.out.println("<<================================================================================>>");
         
+        System.out.println();
+        System.out.println("<<================================================================================>>");
         double classAverage = (double) totalClassScore / (scores.length * scores[0].length);
-        System.out.printf("Class Total Score: %d\n", totalClassScore);
-        System.out.printf("Class Average Score: %.2f\n", classAverage);
+        System.out.printf("Class Total is: %d\n", totalClassScore);
+        System.out.printf("Class Average Score is: %.2f\n", classAverage);
+        System.out.println("<<================================================================================>>");
     }
 
   
@@ -132,6 +147,7 @@ public class StudentGrade{
     int highestStudent = 0; 
     int lowestStudent = 0; 
     int passes = 0;
+    int totalScore = 0;
     
     for (int student = 0; student < scores.length; student++) {
       if (scores[student][subject] > highest) {
@@ -143,9 +159,10 @@ public class StudentGrade{
         lowestStudent = student;
       }
       if (scores[student][subject] >= 50) passes++;
+      totalScore += scores[student][subject];
     }
     
-    return new int[]{highest, lowest, highestStudent, lowestStudent, passes};
+    return new int[]{highest, lowest, highestStudent, lowestStudent, passes, totalScore};
   }
   
   private static int[] calculateSubjectPasses(int[][] scores) {
