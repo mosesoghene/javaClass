@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 
 public class StudentGrade{
@@ -30,6 +31,8 @@ public class StudentGrade{
   }
   
   private static void printScoreTable(int[][] studentScores){
+    totalScores = getTotalScores(studentScores);
+    
     System.out.println("===========================================================");
     System.out.printf("| %-9s ", "STUDENT");
     for (int i = 0; i < studentScores[0].length; i++){
@@ -40,13 +43,11 @@ public class StudentGrade{
     
     for (int student = 0; student < studentScores.length; student++){
       System.out.printf("| Student %d ", student + 1);
-      int total = 0;
       for (int score = 0; score < studentScores[student].length; score++){
         System.out.printf("| %5d ", studentScores[student][score]);
-        total += studentScores[student][score];
       }      
       
-      System.out.printf("| %5d | %5.2f%n", total, ((double) total) / studentScores[student].length);
+      System.out.printf("| %5d | %5.2f | %3d |%n", getTotalOf(studentScores[student]), getAverageOf(studentScores[student]), ArrayUtils.indexOf(totalScores, getTotalOf(studentScores[student])) );
     }
   }
   
@@ -64,5 +65,22 @@ public class StudentGrade{
     
     return studentScores;
   }
+  
+  private static int getTotalOf(int[] studentScores){
+    return IntStream.of(studentScores).sum();
+  }
+  
+  private static double getAverageOf(int[] studentScores){
+    return IntStream.of(studentScores).average().getAsDouble();
+  }
+  
+   private static int[] getTotalScores(int[][] studentScores){
+    int[] totalScores = new int[studentScores.length];
+    for(int i = 0; i < studentScores.length; i++){
+      totalScores[i] = IntStream.of(studentScores[i]).sum();
+    }
+    return totalScores;
+  }
+  
   
 }
