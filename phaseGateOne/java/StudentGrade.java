@@ -14,24 +14,21 @@ public class StudentGrade{
     System.out.println("How many subjects do they offer?");
     int subjectNumber = input.nextInt();
     savingNotice();
-    
-    //collectStudentScoresFor(studentNumber, subjectNumber);
-    savingNotice();
+
     int[][] studentScores = collectStudentScoresFor(studentNumber, subjectNumber);
+    savingNotice();
+    
     printScoreTable(studentScores);
     printSubjectStatistics(studentScores);
     
     
-    
-    //System.out.println(Arrays.deepToString(studentScores));
-    
   }
   
-  private static void savingNotice(){
+  public static void savingNotice(){
     System.out.println("Saving >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\nSaved succesfully\n");
   }
   
-  private static void printScoreTable(int[][] studentScores){
+  public static void printScoreTable(int[][] studentScores){
     int[] totalScores = getTotalScores(studentScores);
     
     System.out.println("===========================================================");
@@ -50,13 +47,13 @@ public class StudentGrade{
       
       System.out.printf("| %5d | %5.2f ", getTotalOf(studentScores[student]), getAverageOf(studentScores[student]));
       for (int i = 0; i < totalScores.length; i++){
-        if (totalScores[i] == getTotalOf(studentScores[student]))
-        System.out.printf("| %3d |%n", totalScores.length - i);
+        if (totalScores[totalScores.length - 1] == getTotalOf(studentScores[student]))
+        System.out.printf("| %3d |%n", studentScores.length);
       }
     }
   }
   
-  private static int[][] collectStudentScoresFor(int studentNumber, int subjectNumber){
+  public static int[][] collectStudentScoresFor(int studentNumber, int subjectNumber){
     Scanner input = new Scanner(System.in);
     int[][] studentScores = new int[studentNumber][subjectNumber];
     
@@ -77,7 +74,7 @@ public class StudentGrade{
   }
   
   
-  private static void printSubjectStatistics(int[][] studentScores){
+  public static void printSubjectStatistics(int[][] studentScores){
     int[] totalScores = getTotalScores(studentScores);    
     
     
@@ -99,15 +96,15 @@ public class StudentGrade{
     System.out.printf("Best Graduating student is: ");
   }
   
-  private static int getTotalOf(int[] studentScores){
+  public static int getTotalOf(int[] studentScores){
     return IntStream.of(studentScores).sum();
   }
   
-  private static double getAverageOf(int[] studentScores){
+  public static double getAverageOf(int[] studentScores){
     return IntStream.of(studentScores).average().getAsDouble();
   }
   
-   private static int[] getTotalScores(int[][] studentScores){
+   public static int[] getTotalScores(int[][] studentScores){
     int[] totalScores = new int[studentScores.length];
     for(int i = 0; i < studentScores.length; i++){
       totalScores[i] = IntStream.of(studentScores[i]).sum();
