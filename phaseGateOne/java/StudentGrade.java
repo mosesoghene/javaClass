@@ -56,9 +56,9 @@ public class StudentGrade{
     }
   }
   
-  public static int[][] getStudentPosition(int[][] totalScores){
-    int[][] array = totalScores;
-    int[][] mappedArray = totalScores;
+  public static Integer[][] getStudentPosition(int[][] totalScores){
+    Integer[][] array = totalScores;
+    Integer[][] mappedArray = totalScores;
     Arrays.sort(mappedArray[1], Comparator.comparingInt(a -> a));
         for (int i = 0; i < mappedArray[1].length; i++) {
             for (int j = 0; j < array[1].length; j++) {
@@ -68,6 +68,7 @@ public class StudentGrade{
                 }
             }
         }
+      
       return mappedArray;
   }
   
