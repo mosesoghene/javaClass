@@ -21,25 +21,25 @@ def displaySubjectSummaries(scores):
         print(f"Number of Fails: {len(scores) - stats[4]}");
 
 
-private static void displayResultsTable(int[][] scores, int[] totals, double[] averages, int[] positions) {
-    System.out.println("\nClass Score Summary:");
-    System.out.println("<<================================================================================>>");
-    System.out.print("| STUDENT   ");
-    for (int i = 1; i <= scores[0].length; i++) {
-      System.out.printf("| SUB%2d", i);
-    }    
-    System.out.printf("| %4s | %6s | %2s |\n", "TOT", "AVE", "POS");
+def displayResultsTable(scores, totals, averages, positions):
+    print("\nClass Score Summary:");
+    print("<<================================================================================>>");
+    print("| STUDENT   ", end="");
+    for i in range(1, len(scores[0])):
+      print(f"| SUB{i:>2}", end="");
+
+    print(f"| TOT | AVE | POS |");
     
-    System.out.println("<<================================================================================>>");
+    print("<<================================================================================>>");
     
-    for (int i = 0; i < scores.length; i++) {
-      System.out.printf("| Student %d ", (i + 1));
-      for (int j = 0; j < scores[i].length; j++) {
-        System.out.printf("| %4d ", scores[i][j]);
-      }
-      System.out.printf("| %4d | %4.2f | %2d |\n", totals[i], averages[i], positions[i]);
-    }    
-    System.out.println("<<================================================================================>>\n");
+    for i in range(len(scores)):
+      print(f"| Student {i + 1} ", end="");
+      for j in range(len(scores[i])):
+        print(f"| {scores[i][j]} ", end="");
+      
+      print(f"| {totals[i]} | {averages[i]:.2f} | {positions[i]} |");
+        
+    print("<<================================================================================>>");
     
-    System.out.println("<<================================================================================>>");
-  }
+    print("<<================================================================================>>");
+  
