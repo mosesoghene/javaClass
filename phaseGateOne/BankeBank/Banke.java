@@ -66,9 +66,9 @@ public class BankeBank{
     1. Make Deposit
     2. Make Withdrawal
     3. Make Transfer
-    4. Change Account pin
-    5. View account number
-    6. View all account details
+    4. View Balance
+    5. Change Account pin
+    6. View account number
     7. Close account
     0. Logout
     >  """;
@@ -117,6 +117,54 @@ public class BankeBank{
           "Transfer failed ❌️"
         );
         manageAccount(account);     
+      }
+      
+      case "4" -> {
+        clearScreen();
+        System.out.printf("Available balance: %,.2f\n", account.getBalance());
+      }
+      
+      case "5" -> {
+        clearScreen();
+        System.out.print("Enter current pin >> ");
+        String currentPin = input.next();
+        
+        System.out.print("Enter new pin >> ");
+        String newPin = input.next();
+        boolean message = account.changePin(currentPin, newPin);
+        System.out.println((message) ? "Pin changed successfully" : "Incorrect pin");
+        manageAccount(account);
+      }
+      case "6" -> {
+        clearScreen();
+        System.out.print("ACCOUNT NUMBER: " + account.getAccountNumber());
+        manageAccount(account);
+      }
+            
+      case "7" -> {
+        System.out.print("Enter account pin to confirm account closure >> ");
+        String pin = input.next();
+        if (account.getPin().equals(pin)){
+          clearScreen();
+          accounts.remove(account);
+          System.out.print("Closing account .................");
+          System.out.print("Account Closed successfully, we regret seeing you leave.");
+          mainMenu();
+        } else {
+          System.out.print("Invalid Account Pin");
+          manageAccount(account);
+        }
+      }
+      
+      case "0" -> {
+        clearScreen();
+        mainMenu();
+      }
+      
+      default -> {
+        clearScreen();
+        System.out.print("Invalid input");
+        manageAccount(account);
       }
       
     }
@@ -257,12 +305,12 @@ class Account{
     return getFirstName() + " " + getLastName();
   }
   
-  public String changePin(String oldPin, String newPin){
+  public boolean changePin(String oldPin, String newPin){
     if (oldPin.equals(this.pin)){
       this.pin = newPin;
-      return "Pin successfully changed";
+      return true;
     } else{      
-      return "Old pin incorrect";
+      return false;
     }
   } 
 }
