@@ -70,18 +70,19 @@ def displayOverallAnalysis(scores, totals, averages):
     
 
 def collectAllScores(studentNumber, subjectNumber):
-    scores = [[],[]]
+    scores = []
     for i in range(studentNumber):
-      print(f"\nEntering scores for Student {(i + 1)}" );
-      for j in range(subjectNumber):
-        scores[i][j] = getValidScore(j);
+        scores.append([])
+        print(f"\nEntering scores for Student {(i + 1)}" );
+        for j in range(subjectNumber):
+            scores[i].append(getValidScore(j));
      
     return scores;
   
 def getValidScore(subject):
     score = -1
     while (score < 0 or score > 100):
-      score = int(input("Enter score for Subject " + (subject + 1) + ": "));
+      score = int(input(f"Enter score for Subject {subject + 1}: "));
       if (score < 0 or score > 100):
         print("Invalid score! Score must be between 0 and 100.");
       
@@ -197,7 +198,7 @@ def findSubjectDifficulty(subjectPasses, numStudents):
             maxPasses = subjectPasses[i];
             easiest = i;        
 
-    return new int[]{hardest, easiest};
+    return [hardest, easiest];
     
 
 
