@@ -34,4 +34,8 @@ class Account{
     return this.balance;
   }
   
+  public String getAccountNumber(){
+    return this.accountNumber;
+  }
+  
 }

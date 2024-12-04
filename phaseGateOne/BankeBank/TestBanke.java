@@ -9,4 +9,18 @@ public class TestBanke{
     double expected = account.getBalance();
     assertEquals(expected, 1203.4);
   }
+  
+  @Test
+  public void testThatGetAccountNumberReturnsAccountNumber(){    
+    Account account = new Account("Moses", "Oghene", "1234");
+    String accountNumber = account.getAccountNumber();
+    assertTrue(accountNumber instanceof String);
+  }
+  
+  @Test
+  public void testThatLengthOfAccountNumberIsTen(){
+    Account account = new Account("Moses", "Oghene", "1234");
+    String accountNumber = account.getAccountNumber();
+    assertTrue(accountNumber.length() == 10);
+  }
 }
