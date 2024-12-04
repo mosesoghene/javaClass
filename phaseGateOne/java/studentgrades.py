@@ -186,7 +186,19 @@ def findBestAndWorstStudents(averages):
         
     return [bestStudent, worstStudent];
   
+def findSubjectDifficulty(subjectPasses, numStudents):
+    hardest, easiest, minPasses, numStudents, maxPasses = 0;
 
+    for i in range(len(subjectPasses)):
+        if (subjectPasses[i] < minPasses):
+            minPasses = subjectPasses[i];
+            hardest = i;
+        if (subjectPasses[i] > maxPasses):
+            maxPasses = subjectPasses[i];
+            easiest = i;        
+
+    return new int[]{hardest, easiest};
+    
 
 
 
