@@ -151,7 +151,31 @@ def calculateTotals(scores):
     
     return totals;
 
+def calculateTotalClassScore(totals):
+    total_sum = 0;
+    for total in totals:
+      total_sum += total;
     
+    return total_sum;
+
+
+def calculateOverallHighestLowest(scores):
+    highest, lowest = 0, 100;
+    highestStudent, lowestStudent, highestSubject, lowestSubject = 0;
+    
+    for i in range(len(scores)):
+      for j in range(len(scores[i])):
+        if (scores[i][j] > highest):
+            highest = scores[i][j];
+            highestStudent = i;
+            highestSubject = j;
+        if (scores[i][j] < lowest):
+            lowest = scores[i][j];
+            lowestStudent = i;
+            lowestSubject = j;
+    
+    return [highest, lowest, highestStudent, lowestStudent, highestSubject, lowestSubject];
+  
 
 
 
