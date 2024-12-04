@@ -176,7 +176,16 @@ def calculateOverallHighestLowest(scores):
     
     return [highest, lowest, highestStudent, lowestStudent, highestSubject, lowestSubject];
   
-
+def findBestAndWorstStudents(averages):
+    bestStudent, worstStudent = 0;
+    for i in range(1,len(averages.length)):
+        if (averages[i] > averages[bestStudent]):
+            bestStudent = i;
+        if (averages[i] < averages[worstStudent]):
+            worstStudent = i;
+        
+    return [bestStudent, worstStudent];
+  
 
 
 
