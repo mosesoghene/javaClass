@@ -141,6 +141,15 @@ def calculateStudentPositions(totals):
     
     return positions;
  
+def calculateTotals(scores):
+    totals = [];
+    for i in range(len(scores)):
+        total = 0
+        for j in range(len(scores[i])):
+            total += scores[i][j];
+        totals.append(total)
+    
+    return totals;
 
     
 
