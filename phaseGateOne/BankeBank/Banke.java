@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
+import java.util.Optional;
 
 public class BankeBank{
   private static ArrayList<Account> accounts = new ArrayList<>();
@@ -32,7 +32,18 @@ public class BankeBank{
         mainMenu();
       }
       case "2" -> {
-        loginScreen();
+        Optional<Account> account = Optional.empty();
+        do {          
+          account = login();
+          if (account.isPresent()){          
+            Account loggedInUser = account.get();
+            clearScreen();
+            manageAccount(loggedInUser);
+          } else {            
+            clearScreen(); 
+            System.out.println("Invalid Log in credentials ❌️");
+          }
+        } while (!(account.isPresent()));
       }
       case "3" -> {
         clearScreen();
@@ -48,9 +59,84 @@ public class BankeBank{
     
   }
   
-  public static void clearScreen() {  
+  public void manageAccount(Account account){
+    Scanner input = new Scanner(System.in);
+    String menu = """
+    
+    1. Make Deposit
+    2. Make Withdrawal
+    3. Make Transfer
+    4. Change Account pin
+    5. View account number
+    6. View all account details
+    7. Close account
+    0. Logout
+    >  """;
+    
+    System.out.println("Welcome, " + account.getLastName() + "🫡️");
+    System.out.print(menu);
+    String option = input.next();
+    
+    switch (option){
+      case "1" -> {
+        System.out.print("Enter amount to deposit >> ");
+        double amount = input.nextDouble();
+        account.deposit(amount);
+        clearScreen();
+        System.out.println("Deposit Successful 💰️ New account balance: $" + account.getBalance());
+        manageAccount(account);        
+      }
+      case "2" -> {
+        System.out.print("Enter amount to withdraw >> ");
+        double amount = input.nextDouble();
+        
+        System.out.print("Enter account pin >> ");
+        String pin = input.next();
+        
+        boolean message = account.withdraw(amount, pin);
+        clearScreen();
+        System.out.println((message) ? "Withdrawal Successful 💰️ New account balance: $" + account.getBalance() : "Withdrawal Failed");
+        manageAccount(account);        
+      }
+      
+      case "3" -> {
+        System.out.print("Enter amount to tranfer >> ");
+        double amount = input.nextDouble();
+        
+        System.out.print("Enter account number >> ");
+        String accountNumber = input.next();
+        
+        System.out.print("Enter account pin >> ");
+        String pin = input.next();
+        
+        boolean message = transferTo(accountNumber, amount, account, pin);
+        clearScreen();
+        System.out.println(
+          (message) ? 
+          "Transfer Successful 💰️ New account balance: $" + account.getBalance() :
+          "Transfer failed ❌️"
+        );
+        manageAccount(account);     
+      }
+      
+    }
+  }
+  
+  public void clearScreen() {  
     System.out.print("\033[H\033[2J");  
     System.out.flush();  
+  }
+  
+  public boolean transferTo(String accountNumber, double amount, Account account, String pin){
+    for (Account recipient: accounts){
+      if (recipient.getAccountNumber().equals(accountNumber)){
+        if (account.withdraw(amount, pin)){
+          recipient.deposit(amount);
+          return true;
+        }
+      }
+    }
+    return false;
   }
   
   public void createAccount(){
@@ -75,8 +161,23 @@ public class BankeBank{
     accounts.add(new Account(firstName, lastName, pin));
   }
   
-  public void loginScreen(){
-    System.out.println("Login Screen ❌️");
+  public Optional<Account> login(){
+    Scanner input = new Scanner(System.in);
+    
+    clearScreen();
+    System.out.println("Login to account");
+    
+    System.out.print("Enter first name: ");
+    String firstName = input.next();
+    System.out.print("Enter 4 digit PIN: ");
+    String pin = input.next();
+    
+    for (Account account: accounts){
+      if (account.getFirstName().equals(firstName.toUpperCase()) && account.getPin().equals(pin)){
+        return Optional.of(account);
+      }
+    }
+    return Optional.empty();
   }
 }
 
@@ -120,16 +221,19 @@ class Account{
     return accountNumber;
   }
   
+  public String getPin(){
+    return this.pin;
+  }
   public void deposit(double amount){
     this.balance += amount;
   }
   
-  public String withdraw(double amount){
-    if (amount < this.balance){
+  public boolean withdraw(double amount, String pin){
+    if (amount < this.balance && amount > 0 && this.pin.equals(pin)){
       this.balance -= amount;
-      return "Withdrawal successful";
+      return true;
     } else {
-      return "Insufficient account balance";
+      return false;
     }
   }
   
