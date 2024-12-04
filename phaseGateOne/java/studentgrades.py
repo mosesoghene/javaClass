@@ -1,35 +1,45 @@
-student_number = int(input("How many students do you have? \n"))
-subject_number = int(input("How many Subjects do they offer? \n"))
+studentNumber = input("How many students do you have?\n");
+subjectNumber = input("How many subjects do they offer?\n");
 
-def collect_scores(student_number, subject_number):
-    student_scores = []
-    
-    for student in range(1, student_number + 1):
-        student_scores.append({student: []})
-        print(f"Entering Scores for student {student}")
-        for subject in range(1, subject_number + 1):
-            score = int(input(f"Enter score for subject {subject} \n"))
-            if score >=0 and score <= 100:
-                student_scores[student - 1][student].append(score)
-            else:
-                subject -= 1
-                print("invalid input")
-    return student_scores
-    
-    
-def get_total_score_of(student_scores):
-    return max(student_scores)
+scores = collectAllScores(studentNumber, subjectNumber);   
+studentTotals = calculateTotals(scores);
+studentAverages = calculateAverages(studentTotals, subjectNumber);
+positions = calculateStudentPositions(studentTotals);
+displayResultsTable(scores, studentTotals, studentAverages, positions);
+displaySubjectSummaries(scores);
+displayOverallAnalysis(scores, studentTotals, studentAverages);
 
-def get_average_score_of(student_scores):
-    return sum(student_scores) / len(student_scores)
+def displaySubjectSummaries(scores):
+    for subject in range(len(scores[0])):
+        stats = calculateSubjectStatistics(scores, subject);
+        print("\nSubject Summary:");
+        print(f"\nSubject {subject + 1}");
+        print(f"Highest scoring student is: Student {stats[2] + 1} Scoring {stats[0]}");
+        print(f"Lowest scoring student is: Student {stats[3] + 1} Scoring {stats[1]}");
+        print(f"Total Score is: {stats[5]}");      
+        print(f"Number of passes: {stats[4]}");
+        print(f"Number of Fails: {len(scores) - stats[4]}");
 
-def get_all_student_totals(scores_db):
-    all_student_total_scores = []
-    for i in range(1, len(scores_db) + 1):    
-        all_student_total_scores.append(max(scores_db[i-1].get(i)))
-        
-    return all_student_total_scores
 
-scores_db = collect_scores(student_number, subject_number)
-print(get_all_student_totals(scores_db))
+private static void displayResultsTable(int[][] scores, int[] totals, double[] averages, int[] positions) {
+    System.out.println("\nClass Score Summary:");
+    System.out.println("<<================================================================================>>");
+    System.out.print("| STUDENT   ");
+    for (int i = 1; i <= scores[0].length; i++) {
+      System.out.printf("| SUB%2d", i);
+    }    
+    System.out.printf("| %4s | %6s | %2s |\n", "TOT", "AVE", "POS");
     
+    System.out.println("<<================================================================================>>");
+    
+    for (int i = 0; i < scores.length; i++) {
+      System.out.printf("| Student %d ", (i + 1));
+      for (int j = 0; j < scores[i].length; j++) {
+        System.out.printf("| %4d ", scores[i][j]);
+      }
+      System.out.printf("| %4d | %4.2f | %2d |\n", totals[i], averages[i], positions[i]);
+    }    
+    System.out.println("<<================================================================================>>\n");
+    
+    System.out.println("<<================================================================================>>");
+  }
