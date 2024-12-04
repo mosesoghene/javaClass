@@ -33,7 +33,7 @@ def displayResultsTable(scores, totals, averages, positions):
     print("<<================================================================================>>");
 
 
-def displayOverallAnalysis(scores, totals, averages) {
+def displayOverallAnalysis(scores, totals, averages):
     subjectPasses = calculateSubjectPasses(scores);
     overallStats = calculateOverallHighestLowest(scores);
     subjectDifficulty = findSubjectDifficulty(subjectPasses, scores.length);
@@ -63,11 +63,88 @@ def displayOverallAnalysis(scores, totals, averages) {
 
     print();
     print("<<================================================================================>>");
-    classAverage = (double) totalClassScore / (scores.length * scores[0].length);
+    classAverage = totalClassScore / (scores.length * len(scores[0]));
     print(f"Class Total is: {totalClassScore}");
     print(f"Class Average Score is: {classAverage:.2f}", );
     print("<<================================================================================>>");
-    }
+    
+
+def collectAllScores(studentNumber, subjectNumber):
+    scores = [[],[]]
+    for i in range(studentNumber):
+      print(f"\nEntering scores for Student {(i + 1)}" );
+      for j in range(subjectNumber):
+        scores[i][j] = getValidScore(j);
+     
+    return scores;
+  
+def getValidScore(subject):
+    score = -1
+    while (score < 0 or score > 100):
+      score = int(input("Enter score for Subject " + (subject + 1) + ": "));
+      if (score < 0 or score > 100):
+        print("Invalid score! Score must be between 0 and 100.");
+      
+    return score;
+  
+
+def calculateSubjectStatistics(scores, subject):
+    highest = 0; 
+    lowest = 100;
+    highestStudent = 0; 
+    lowestStudent = 0; 
+    passes = 0;
+    totalScore = 0;
+
+    for student in range(len(scores)):
+      if (scores[student][subject] > highest):
+        highest = scores[student][subject];
+        highestStudent = student;
+      
+      if (scores[student][subject] < lowest):
+        lowest = scores[student][subject];
+        lowestStudent = student;
+      
+      if (scores[student][subject] >= 50): passes += 1;
+      totalScore += scores[student][subject];
+    
+
+    return [highest, lowest, highestStudent, lowestStudent, passes, totalScore];
+
+def calculateSubjectPasses(scores):
+    subjectPasses = [];
+    for j in range(len(scores[0])):
+        passes = 0
+        for i in range(len(scores)):
+            if (scores[i][j] >= 50): 
+                passes += 1;
+        subjectPasses.append(passes)
+    return subjectPasses;
+
+def calculateAverages(totals, numSubjects):
+    averages = [];
+    for i in range(len(totals)):
+        averages.append(totals[i] / numSubjects);
+    
+    return averages;
+  
+
+def calculateStudentPositions(totals):
+    positions = [];
+    for i in range(len(totals)):
+      position = 1;
+      for j in range(len(totals)):
+        if (totals[j] > totals[i]):
+          position += 1;
+      
+      positions.append(position);
+    
+    return positions;
+ 
+
+    
+
+
 
 
 
