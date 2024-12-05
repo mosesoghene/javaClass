@@ -7,5 +7,11 @@ public class TestCreditCardValidator{
     CreditCardValidator creditCard = new CreditCardValidator();
     assertTrue(creditCard.isValidLength("12345095678735"));
   }
+  
+  @Test
+  public void testThatDetermineCardTypeReturnCorrectResult(){
+    CreditCardValidator creditCard = new CreditCardValidator();
+    assertEquals(creditCard.determineCardType("12345095678735"), "Invalid Card Type");
+  }
 
 }
