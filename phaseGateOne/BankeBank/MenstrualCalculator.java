@@ -66,6 +66,28 @@ public class MenstrualCalculator {
         
         return safePeriod;
     }
+    public ArrayList<LocalDate> calculateSafePeriod() {
+        ArrayList<LocalDate> safePeriod = new ArrayList<>();
+        LocalDate fertileStart = calculateOvulationDate().minusDays(5);
+        LocalDate fertileEnd = calculateOvulationDate().plusDays(1);
+        
+
+        LocalDate currentDate = flowEndDate.plusDays(1);
+        while (currentDate.isBefore(fertileStart)) {
+            safePeriod.add(currentDate);
+            currentDate = currentDate.plusDays(1);
+        }
+        
+
+        currentDate = fertileEnd.plusDays(1);
+        LocalDate nextPeriod = calculateNextPeriodDate();
+        while (currentDate.isBefore(nextPeriod)) {
+            safePeriod.add(currentDate);
+            currentDate = currentDate.plusDays(1);
+        }
+        
+        return safePeriod;
+    }
     
     public static void main(String[] args) {
         
