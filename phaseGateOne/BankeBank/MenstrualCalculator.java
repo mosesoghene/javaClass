@@ -35,7 +35,7 @@ public class MenstrualCalculator {
         ArrayList<LocalDate> fertileWindow = new ArrayList<>();
         LocalDate ovulationDate = calculateOvulationDate();
         
-        for (int i = 5; i >= 0; i--) {
+        for (int i = 3; i >= 0; i--) {
             fertileWindow.add(ovulationDate.minusDays(i));
         }
         
@@ -44,28 +44,7 @@ public class MenstrualCalculator {
         return fertileWindow;
     }
     
-    public ArrayList<LocalDate> calculateSafePeriod() {
-        ArrayList<LocalDate> safePeriod = new ArrayList<>();
-        LocalDate fertileStart = calculateOvulationDate().minusDays(5);
-        LocalDate fertileEnd = calculateOvulationDate().plusDays(1);
-        
-        
-        LocalDate currentDate = flowEndDate.plusDays(1);
-        while (currentDate.isBefore(fertileStart)) {
-            safePeriod.add(currentDate);
-            currentDate = currentDate.plusDays(1);
-        }
-        
-        
-        currentDate = fertileEnd.plusDays(1);
-        LocalDate nextPeriod = calculateNextPeriodDate();
-        while (currentDate.isBefore(nextPeriod)) {
-            safePeriod.add(currentDate);
-            currentDate = currentDate.plusDays(1);
-        }
-        
-        return safePeriod;
-    }
+   
     public ArrayList<LocalDate> calculateSafePeriod() {
         ArrayList<LocalDate> safePeriod = new ArrayList<>();
         LocalDate fertileStart = calculateOvulationDate().minusDays(5);
@@ -79,8 +58,8 @@ public class MenstrualCalculator {
         }
         
 
-        currentDate = fertileEnd.plusDays(1);
-        LocalDate nextPeriod = calculateNextPeriodDate();
+        currentDate = fertileEnd.plusDays(2);
+        LocalDate nextPeriod = calculateNextPeriodDate().minusDays(3);
         while (currentDate.isBefore(nextPeriod)) {
             safePeriod.add(currentDate);
             currentDate = currentDate.plusDays(1);
@@ -117,30 +96,42 @@ public class MenstrualCalculator {
             return "Safe Period - Low Fertility";
         }
         
-        if (calculatePMSDays().contains(date)) {
-            return "PMS Window";
+        if (calculatePreMenstrualSyndromeDays().contains(date)) {
+            return "Pre-Menstrual Syndrome Window";
         }
         
         return "Regular Day";
     }
     
     public static void main(String[] args) {
+      Scanner input = new Scanner(System.in);
+      
+      System.out.println("Enter Last period start date\n");
+      System.out.print("Enter year: ");
+      int year = input.nextInt();
+      System.out.print("Enter month: ");
+      int month = input.nextInt();
+      System.out.print("Enter day: ");
+      int day = input.nextInt();
         
-      LocalDate flowStart = LocalDate.now();
+      LocalDate flowStart = LocalDate.of(year, month, day);
       LocalDate flowEnd = flowStart.plusDays(5);
       
       MenstrualCalculator calculator = new MenstrualCalculator(flowStart, flowEnd);
       
-      System.out.println("Flow Duration: " + " days");
-      System.out.println("Next Period: " );
-      System.out.println("Ovulation Date: " );
+      System.out.println("Flow Duration: " + calculator.calculateFlowDuration() + " days");
+      System.out.println("Next Period: " + calculator.calculateNextPeriodDate());
+      System.out.println("Ovulation Date: " + calculator.calculateOvulationDate());
       
-      System.out.println("\nFertile Window:");
-      
-      
-      System.out.println("\nSafe Period Days:");
+      System.out.println("\nFertile Window: \n");
+      calculator.calculateFertileWindow().forEach(date ->  System.out.println(date + " -> " + calculator.getFertilityStatus(date)));
       
       
-      System.out.println("\nPre-Menstrual Syndrome Period:");
+      System.out.println("\nSafe Period Days: \n");
+      calculator.calculateSafePeriod().forEach(System.out::println);
+      
+      
+      System.out.println("\nPre-Menstrual Syndrome Period: \n");
+      calculator.calculatePreMenstrualSyndromeDays().forEach(System.out::println);
     }
 }
