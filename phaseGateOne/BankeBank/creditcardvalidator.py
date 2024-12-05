@@ -1,49 +1,50 @@
 def isValidLength(cardNumber):
-    length = cardNumber.length();
-    return length >= 13 && length <= 16;
+    length = len(cardNumber);
+    return length >= 13 and length <= 16;
   
 
 def determineCardType(cardNumber):
-    if (cardNumber.startsWith("4")):
+    if (cardNumber[0] == "4"):
         return "Visa Card";
-    elif (cardNumber.startsWith("5")):
+    elif (cardNumber[0] == "5"):
         return "MasterCard";
-    elif (cardNumber.startsWith("37")):
+    elif (cardNumber[0] == "3" and cardNumber[1] == "7"):
         return "American Express Card";
-    elif (cardNumber.startsWith("6")):
+    elif (cardNumber[0] == "6"):
         return "Discover Card";
 
     return "Invalid Card Type";
   
   
-def sumOfDoubleEvenPlace(cardNumber) {
+def sumOfDoubleEvenPlace(cardNumber):
     total = 0;
     for i in range(len(cardNumber) - 2, 0, -2):
-        digit = cardNumber[i];
+        digit = int(cardNumber[i]);
         doubledDigit = digit * 2;
         total += (doubledDigit // 10 + doubledDigit % 10) if doubledDigit > 9 else doubledDigit;
-    
+
     return total;
+
     
     
-def sumOfOddPlace(cardNumber) {
+def sumOfOddPlace(cardNumber):
     total = 0;
     for i in  range(len(cardNumber) - 1, 0, -2):
-        total += cardNumber[i];
-    }
+        total += int(cardNumber[i]);
+    
     return total;
-  }
+  
   
 def isValidCard(cardNumber):
-    sumOfDoubleEvenPlace = sumOfDoubleEvenPlace(cardNumber);
-    sumOfOddPlace = sumOfOddPlace(cardNumber);
-    totalSum = sumOfDoubleEvenPlace + sumOfOddPlace;
+    sumOfDoubleEven = sumOfDoubleEvenPlace(cardNumber);
+    sumOfOdd = sumOfOddPlace(cardNumber);
+    totalSum = sumOfDoubleEven + sumOfOdd;
 
     return totalSum % 10 == 0;
   
  
 
-String cardNumber = input("Enter credit card number: ");
+cardNumber = input("Enter credit card number: ");
 
 if (isValidLength(cardNumber)):
     cardType = determineCardType(cardNumber);
