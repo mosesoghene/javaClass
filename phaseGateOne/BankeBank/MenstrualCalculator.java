@@ -89,6 +89,41 @@ public class MenstrualCalculator {
         return safePeriod;
     }
     
+    public ArrayList<LocalDate> calculatePreMenstrualSyndromeDays() {
+        ArrayList<LocalDate> pmsDays = new ArrayList<>();
+        LocalDate nextPeriod = calculateNextPeriodDate();
+        
+        for (int i = 7; i > 0; i--) {
+            pmsDays.add(nextPeriod.minusDays(i));
+        }
+        
+        return pmsDays;
+    }
+    
+    public String getFertilityStatus(LocalDate date) {
+        if (date.isEqual(flowStartDate) || 
+            (date.isAfter(flowStartDate) && date.isBefore(flowEndDate.plusDays(1)))) {
+            return "Menstrual Flow";
+        }
+        
+        if (calculateFertileWindow().contains(date)) {
+            if (date.isEqual(calculateOvulationDate())) {
+                return "Ovulation Day - Highest Fertility";
+            }
+            return "Fertile Window - High Fertility";
+        }
+        
+        if (calculateSafePeriod().contains(date)) {
+            return "Safe Period - Low Fertility";
+        }
+        
+        if (calculatePMSDays().contains(date)) {
+            return "PMS Window";
+        }
+        
+        return "Regular Day";
+    }
+    
     public static void main(String[] args) {
         
       LocalDate flowStart = LocalDate.now();
