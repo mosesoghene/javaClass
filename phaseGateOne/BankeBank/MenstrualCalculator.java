@@ -28,6 +28,10 @@ public class MenstrualCalculator {
       return flowStartDate.plusDays(cycleLength);
     }
     
+    public LocalDate calculateOvulationDate() {
+      return calculateNextPeriodDate().minusDays(14);
+    }
+    
     public static void main(String[] args) {
         
       LocalDate flowStart = LocalDate.now();
