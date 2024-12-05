@@ -1,12 +1,32 @@
 import java.util.Scanner;
 
 public class CreditCardValidator {
-  
-  
-    public static boolean isValidLength(String cardNumber) {
-        int length = cardNumber.length();
-        return length >= 13 && length <= 16;
+  public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    
+    System.out.print("Enter credit card number: ");
+    String cardNumber = input.nextLine();
+    
+    if (!isValidLength(cardNumber)) {
+      System.out.println("Invalid card number length. Must be between 13 and 16 digits.");
     }
+    
+    String cardType = determineCardType(cardNumber);
+    boolean isValid = isValidCard(cardNumber);
+    
+    
+    System.out.println("*******************************************************");
+    System.out.printf("**Card Type: %s%n", cardType);
+    System.out.printf("**Card Number: %s%n", cardNumber);
+    System.out.printf("**Card Length: %d%n", cardNumber.length());
+    System.out.printf("**Card Validity: %s%n", isValid ? "Valid" : "Invalid");
+    System.out.println("*******************************************************");
+  }
+  
+  public static boolean isValidLength(String cardNumber) {
+    int length = cardNumber.length();
+    return length >= 13 && length <= 16;
+  }
 
   public static String determineCardType(String cardNumber) {
     if (cardNumber.startsWith("4")) {
