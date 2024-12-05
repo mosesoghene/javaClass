@@ -32,6 +32,19 @@ public class MenstrualCalculator {
       return calculateNextPeriodDate().minusDays(14);
     }
     
+    public List<LocalDate> calculateFertileWindow() {
+        ArrayList<LocalDate> fertileWindow = new ArrayList<>();
+        LocalDate ovulationDate = calculateOvulationDate();
+        
+        for (int i = 5; i >= 0; i--) {
+            fertileWindow.add(ovulationDate.minusDays(i));
+        }
+        
+        fertileWindow.add(ovulationDate.plusDays(1));
+        
+        return fertileWindow;
+    }
+    
     public static void main(String[] args) {
         
       LocalDate flowStart = LocalDate.now();
