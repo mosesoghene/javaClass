@@ -3,9 +3,9 @@ from studentgrades import *
 
 class TestStudentGrade(TestCase):
     def test_that_collect_scores_function_exists(self):
-        collect_scores(1,1)
+        displayOverallAnalysis([], [], [])
         
-    def test_that_everage_returns_correct_result(self):
-        actual = get_average_score_of([1,2,3])
-        expected = 2.0
+    def test_that_get_valid_score_returns_correct_result(self):
+        actual = getValidScore(0)
+        expected = 30
         self.assertEquals(actual, expected)

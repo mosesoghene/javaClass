@@ -4,7 +4,7 @@ public class Kata{
     int[] array = {1,2,3,5,4};
     double[] dArray = {1.0,2.0,3.0,5.0,4.0};
     String[] stringArray = {"a", "b", "d", "c", "e"};
-    
+    /*
     System.out.println(getArrayMaxNumber(array));
     
     System.out.println(Arrays.toString(reverseArray(array)));
@@ -38,6 +38,11 @@ public class Kata{
     System.out.println(isPalindrome(45155));
     System.out.println(factorialOf(5));
     System.out.println(squareOf(5));
+    
+    */
+    System.out.println(Arrays.toString(numbersIn("1a2b3c4d")));
+    
+    
   }
   
   public static int getArrayMaxNumber(int[] array){
@@ -252,5 +257,31 @@ public class Kata{
   
   public static long squareOf(int number){
     return number * number;
+  }
+  
+  public static int countPrimesOf(int number){
+    int count = 0;
+    for(int i = 1; i < number; i++){
+      if(isPrime(i)) count++;
+    }
+    return count;
+  }
+  
+  public static int[] primesOf(int number){
+    int[] primes = new int[countPrimesOf(number)];
+    int index = 0;
+    for(int i = 1; i < number; i++ ){
+      if(isPrime(i)){
+        primes[index++] = i;
+      }
+    }    
+    return primes;
+  }
+  
+  public static int[] numbersIn(String text){
+    return text.chars()
+               .filter(number -> number >= '0' && number <= '9')
+               .map(c -> c - 48)
+               .toArray();
   }
 }

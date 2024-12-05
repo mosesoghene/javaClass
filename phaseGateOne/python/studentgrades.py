@@ -83,10 +83,14 @@ def collectAllScores(studentNumber, subjectNumber):
   
 def getValidScore(subject):
     score = -1
-    while (score < 0 or score > 100):
-      score = int(input(f"Enter score for Subject {subject + 1}: "))
-      if (score < 0 or score > 100):
-        print("Invalid score! Score must be between 0 and 100.")
+    while (score < 0 or score > 100):    
+        score = input(f"Enter score for Subject {subject + 1}: ")
+        if score.isdigit():
+            score = int(score)
+            if (score < 0 or score > 100):
+                print("Invalid score! Score must be between 0 and 100.")
+        else:
+            print("Input not a valid number")
       
     return score
   
@@ -204,7 +208,7 @@ def findSubjectDifficulty(subjectPasses, numStudents):
     
 
 
-
+"""
 studentNumber = int(input("How many students do you have?\n"))
 subjectNumber = int(input("How many subjects do they offer?\n"))
 
@@ -215,5 +219,5 @@ positions = calculateStudentPositions(studentTotals)
 displayResultsTable(scores, studentTotals, studentAverages, positions)
 displaySubjectSummaries(scores)
 displayOverallAnalysis(scores, studentTotals, studentAverages)
-
+"""
 
