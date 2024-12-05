@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Contact{
   private String firstName;
@@ -39,18 +40,22 @@ public class Contact{
   
   public boolean updateFirstName(String firstName){
     this.firstName = firstName;
+    return (this.firstName == firstName) ? true : false;
   }
   
   public boolean updateLastName(String lastName){
     this.lastName = lastName;
+    return (this.lastName == lastName) ? true : false;
   }
   
   public boolean updatePhoneNumber(String phoneNumber){
     this.phoneNumber = phoneNumber;
+    return (this.phoneNumber == phoneNumber) ? true : false;
   }
   
   public boolean updateEmail(String email){
     this.email = email;
+    return (this.email == email) ? true : false;
   }
 }
 
@@ -89,7 +94,7 @@ public class Phonebook{
       case "2" -> {
         clearScreen();
         System.out.println("*** Search Contacts ***\n")
-        inputPrompt("Enter name or phone number");
+        inputPrompt("Enter name or phone number: ");
         String searchKeyword = input.next();
         clearScreen();
         System.out.println("Search for '" + searchKeyword +"'")
@@ -105,12 +110,28 @@ public class Phonebook{
         }
         mainMenu();
       }
-      case "3" -> {        
-        System.out.println("*** Search Contacts ***\n")
+      case "3" -> {
+        clearScreen();
+        System.out.println("*** Edit Contacts ***\n");
+        inputprompt("Enter phone number: ")
+        String phoneNumber = input.next();
+        updateContactInfo(phoneNumber);
+        
       }
+      
     }
   }
 
+  public void updateContactInfo(String phoneNumber){
+    Contact currentContact;
+    for (contact: contacts){
+      if (contact.getPhoneNumber().equals(phoneNumber)){
+        currentContact = contact;
+      }
+    }
+    
+    System.out.println("*** Edit " + currentContact.getFirstName() + "***\n");
+  }
 
   private void inputPrompt(String text){
     System.out.print(text);
