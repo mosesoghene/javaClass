@@ -14,23 +14,37 @@ public class MenstrualCalculator {
       this.flowEndDate = flowEndDate;
     }
     
+    public void setCycleLength(int cycleLength) {
+      this.cycleLength = cycleLength;
+    }
+
+   
+    public int calculateFlowDuration() {
+      return Period.between(flowStartDate, flowEndDate).getDays() + 1;
+    }
+
+    
+    public LocalDate calculateNextPeriodDate() {
+      return flowStartDate.plusDays(cycleLength);
+    }
+    
     public static void main(String[] args) {
         
-        LocalDate flowStart = LocalDate.now();
-        LocalDate flowEnd = flowStart.plusDays(5);
-        
-        MenstrualCalculator calculator = new MenstrualCalculator(flowStart, flowEnd);
-        
-        System.out.println("Flow Duration: " + " days");
-        System.out.println("Next Period: " );
-        System.out.println("Ovulation Date: " );
-        
-        System.out.println("\nFertile Window:");
-        
-        
-        System.out.println("\nSafe Period Days:");
-        
-        
-        System.out.println("\nPre-Menstrual Syndrome Period:");
+      LocalDate flowStart = LocalDate.now();
+      LocalDate flowEnd = flowStart.plusDays(5);
+      
+      MenstrualCalculator calculator = new MenstrualCalculator(flowStart, flowEnd);
+      
+      System.out.println("Flow Duration: " + " days");
+      System.out.println("Next Period: " );
+      System.out.println("Ovulation Date: " );
+      
+      System.out.println("\nFertile Window:");
+      
+      
+      System.out.println("\nSafe Period Days:");
+      
+      
+      System.out.println("\nPre-Menstrual Syndrome Period:");
     }
 }
