@@ -51,7 +51,7 @@ class MenstrualCalculator:
         
         return safe_period
     
-    def calculate_pre_menstrual_syndrome_days(self) -> :
+    def calculate_pre_menstrual_syndrome_days(self)cahr:
         pms_days = []
         next_period = self.calculate_next_period_date()
         
