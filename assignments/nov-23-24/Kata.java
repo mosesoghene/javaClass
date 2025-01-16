@@ -282,6 +282,6 @@ public class Kata{
     return text.chars()
                .filter(number -> number >= '0' && number <= '9')
                .map(c -> c - 48)
-               .toArray();
+             .toArray();
   }
 }

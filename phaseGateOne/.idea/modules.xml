@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/oldSnack/oldSnack.iml" filepath="$PROJECT_DIR$/oldSnack/oldSnack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/phaseGateOne.iml" filepath="$PROJECT_DIR$/phaseGateOne.iml" />
+    </modules>
+  </component>
+</project>

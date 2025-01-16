@@ -2,14 +2,14 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class Contact{
+class Contact{
   private String firstName;
   private String lastName;
   private String phoneNumber;
   private String email;
   
   public Contact(String firstName, String phoneNumber){
-    this.firstname = firstName;
+    this.firstName = firstName;
     this.lastName = "not set";
     this.phoneNumber = phoneNumber;
     this.email = "not set";   
@@ -34,8 +34,8 @@ public class Contact{
   public String getContactDetails(){
     return "Firstname: " + getFirstName() + 
            "\nLastname : " + getLastName() + 
-           "\nPhone Number: " getPhoneNumber() + 
-           "\nEmail : " getEmail() + "\n\n";
+           "\nPhone Number: " + getPhoneNumber() +
+           "\nEmail : " + getEmail() + "\n\n";
   }
   
   public boolean updateFirstName(String firstName){
@@ -80,12 +80,12 @@ public class Phonebook{
       case "1" -> {
         
         clearScreen();
-        System.out.println("*** Create New Contact ***\n")
+        System.out.println("*** Create New Contact ***\n");
         inputPrmpt("Enter firstname: ");
-        String firstName = input.next()
+        String firstName = input.next();
         
         inputPrmpt("Enter phone number: ");
-        String phoneNumber = input.next()
+        String phoneNumber = input.next();
         
         contacts.add(new Contact(firstName, phoneNumber));
         mainMenu();
@@ -93,12 +93,12 @@ public class Phonebook{
       
       case "2" -> {
         clearScreen();
-        System.out.println("*** Search Contacts ***\n")
+        System.out.println("*** Search Contacts ***\n");
         inputPrompt("Enter name or phone number: ");
         String searchKeyword = input.next();
         clearScreen();
-        System.out.println("Search for '" + searchKeyword +"'")
-        for (contact: contacts){
+        System.out.println("Search for '" + searchKeyword +"'");
+        for (Contact contact: contacts){
           if (
             contact.getFirstName().contains(searchKeyword) || 
             contact.getLastName().contains(searchKeyword) ||
@@ -113,7 +113,7 @@ public class Phonebook{
       case "3" -> {
         clearScreen();
         System.out.println("*** Edit Contacts ***\n");
-        inputprompt("Enter phone number: ")
+        inputprompt("Enter phone number: ");
         String phoneNumber = input.next();
         updateContactInfo(phoneNumber);
         
@@ -124,7 +124,7 @@ public class Phonebook{
 
   public void updateContactInfo(String phoneNumber){
     Contact currentContact;
-    for (contact: contacts){
+    for (Contact contact: contacts){
       if (contact.getPhoneNumber().equals(phoneNumber)){
         currentContact = contact;
       }
