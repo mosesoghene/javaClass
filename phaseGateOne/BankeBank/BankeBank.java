@@ -120,26 +120,44 @@ public class BankeBank{
     
     switch (option){
       case "1" -> {
-        double amount = 0;
-        boolean isValid = false;
-        do{
-          System.out.print("Enter amount to deposit >> ");
-          try {
-            amount = input.nextDouble();
+
+          String amountInput = "-1.1";
+          boolean isValid;
+          do {
+
+            System.out.print("Enter amount to deposit >> ");
+            amountInput = input.next();
+
+            if (!amountInput.matches("^-?\\d+(?:\\.\\d+)?$")){
+              System.out.println("Invalid input in transfer amount. Try again.\n");
+              isValid = false;
+            } else {
+              isValid = true;
+            }
+          } while (!isValid);
+
+          double amount = Double.parseDouble(amountInput);
+          account.deposit(amount);
+          clearScreen();
+          System.out.println("Deposit Successful 💰️ New account balance: $" + account.getBalance());
+          manageAccount(account);
+      }
+      case "2" -> {
+        String amountInput = "-1.1";
+        boolean isValid;
+        do {
+          System.out.print("Enter amount to withdraw >> ");
+          amountInput = input.next();
+
+          if (!amountInput.matches("^-?\\d+(?:\\.\\d+)?$")){
+            System.out.println("Invalid input in transfer amount. Try again.\n");
+            isValid = false;
+          } else {
             isValid = true;
-          } catch (InputMismatchException e) {
-            System.out.println("Invalid amount entered. Try again.");
           }
         } while (!isValid);
 
-        account.deposit(amount);
-        clearScreen();
-        System.out.println("Deposit Successful 💰️ New account balance: $" + account.getBalance());
-        manageAccount(account);        
-      }
-      case "2" -> {
-        System.out.print("Enter amount to withdraw >> ");
-        double amount = input.nextDouble();
+        double amount = Double.parseDouble(amountInput);
         
         System.out.print("Enter account pin >> ");
         String pin = input.next();
@@ -151,8 +169,24 @@ public class BankeBank{
       }
       
       case "3" -> {
-        System.out.print("Enter amount to tranfer >> ");
-        double amount = input.nextDouble();
+
+        String amountInput = "-1.1";
+        boolean isValid;
+        do {
+          System.out.print("Enter amount to transfer >> ");
+          amountInput = input.next();
+
+
+            if (!amountInput.matches("^-?\\d+(?:\\.\\d+)?$")){
+              System.out.println("Invalid input in transfer amount. Try again.\n");
+              isValid = false;
+            } else {
+              isValid = true;
+            }
+
+        } while (!isValid);
+
+        double amount = Double.parseDouble(amountInput);
         
         System.out.print("Enter account number >> ");
         String accountNumber = input.next();
@@ -266,19 +300,19 @@ public class BankeBank{
     Scanner input = new Scanner(System.in);
     System.out.println("Banke Account Creation Form");
 
-    System.out.println("\n Select Bank to create account >> ");
+    System.out.println("\nSelect Bank to create account >> ");
     for (int i = 0; i < otherBanks.size(); i++){
       System.out.println(i + " -> " + otherBanks.get(i).getBankName());
     }
 
     int bankIndex = -1;
     do {
-      try {
-        bankIndex = input.nextInt();
-        if (bankIndex < 0 || bankIndex >= otherBanks.size())
-          System.out.println("Invalid Bank option");
-      } catch (InputMismatchException e) {
-        System.out.println("Invalid Bank option");
+      String bankIndexInput = input.nextLine();
+
+      if (bankIndexInput.matches("^\\d+$")){
+        bankIndex = Integer.parseInt(bankIndexInput);
+      } else {
+        System.out.println("ERROR: Invalid Bank option input\nTry again >> ");
       }
     } while (bankIndex < 0 || bankIndex >= otherBanks.size());
 
