@@ -28,4 +28,12 @@ public class AC_Test {
         ac.increaseTemperature();
         assertEquals(17, ac.temperature());
     }
+
+    @Test
+    public void decreaseTemperature_TemperatureDecreases_ACtest() {
+        AC ac = new AC();
+        ac.turnOn();
+        ac.decreaseTemperature();
+        assertEquals(16, ac.temperature());
+    }
 }
