@@ -26,4 +26,10 @@ public class MyArrayListTest {
         assertEquals(0, strings.size());
     }
 
+    @Test
+    public void addX_sizeIncreasesByOne_MyArrayTest(){
+        strings.add("One");
+        assertEquals(1, strings.size());
+    }
+
 }

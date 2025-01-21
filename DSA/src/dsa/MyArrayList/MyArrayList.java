@@ -1,11 +1,16 @@
 package dsa.MyArrayList;
 
 public class MyArrayList {
+    private int size = 0;
     public boolean isEmpty() {
         return true;
     }
 
     public int size() {
-        return 0;
+        return size;
+    }
+
+    public void add(String element) {
+        size++;
     }
 }
