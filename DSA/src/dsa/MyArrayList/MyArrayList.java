@@ -2,8 +2,11 @@ package dsa.MyArrayList;
 
 public class MyArrayList {
     private int size = 0;
+    private int capacity = 16;
+    private String[] elements = new String[capacity];
+
     public boolean isEmpty() {
-        return true;
+        return size == 0;
     }
 
     public int size() {
@@ -11,10 +14,10 @@ public class MyArrayList {
     }
 
     public void add(String element) {
-        size++;
+        elements[size++] = element;
     }
 
     public String get(int index) {
-        return "One";
+        return elements[index];
     }
 }

@@ -38,4 +38,11 @@ public class MyArrayListTest {
         assertEquals("One", strings.get(0));
     }
 
+    @Test
+    public void addXY_getXinIndexOne_MyArrayTest(){
+        strings.add("One");
+        strings.add("Two");
+        assertEquals("Two", strings.get(1));
+    }
+
 }
