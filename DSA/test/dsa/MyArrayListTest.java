@@ -32,4 +32,10 @@ public class MyArrayListTest {
         assertEquals(1, strings.size());
     }
 
+    @Test
+    public void addX_getXinIndexZero_MyArrayTest(){
+        strings.add("One");
+        assertEquals("One", strings.get(0));
+    }
+
 }

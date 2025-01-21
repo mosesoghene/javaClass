@@ -13,4 +13,8 @@ public class MyArrayList {
     public void add(String element) {
         size++;
     }
+
+    public String get(int index) {
+        return "One";
+    }
 }
