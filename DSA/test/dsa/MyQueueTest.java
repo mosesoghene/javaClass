@@ -37,6 +37,34 @@ public class MyQueueTest {
     }
 
     @Test
-    public void addX_dequeue_returnX_QueueIsNotEmpty_MyQueueTest() {}
+    public void addXY_dequeue_returnX_QueueIsNotEmpty_MyQueueTest() {
+        queue.enqueue("One");
+        queue.enqueue("Two");
+        assertEquals("One", queue.dequeue());
+        assertFalse(queue.isEmpty());
+    }
 
+    @Test
+    public void addXY_dequeueXY_returnXY_QueueIsEmpty_MyQueueTest() {
+        queue.enqueue("One");
+        queue.enqueue("Two");
+        assertEquals("One", queue.dequeue());
+        assertEquals("Two", queue.dequeue());
+        assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    public void dequeueEmptyQueue_returnNull_MyQueueTest() {
+        assertNull(queue.dequeue());
+    }
+
+    @Test
+    public void enqueueXY_dequeueXY_returnXY_QueueIsEmpty_dequeueReturnNull_MyQueueTest() {
+        queue.enqueue("One");
+        queue.enqueue("Two");
+        assertEquals("One", queue.dequeue());
+        assertEquals("Two", queue.dequeue());
+        assertNull(queue.dequeue());
+        assertTrue(queue.isEmpty());
+    }
 }

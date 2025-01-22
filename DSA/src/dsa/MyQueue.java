@@ -1,17 +1,17 @@
 package dsa;
 
 public class MyQueue {
-    private int capacity;
+    private String[] strings;
     private final int front = 0;
     private int rear = 0;
 
     public MyQueue(int capacity) {
-        this.capacity = capacity;
+        this.strings = new String[capacity];
     }
 
 
     public int capacity() {
-        return capacity;
+        return strings.length;
     }
 
     public boolean isEmpty() {
@@ -19,11 +19,19 @@ public class MyQueue {
     }
 
     public void enqueue(String element) {
-        rear++;
+        strings[rear++] = element;
     }
 
     public String dequeue() {
-        rear--;
-        return "One";
+        String element = strings[front];
+        updateQueue();
+        return element;
+    }
+
+    private void updateQueue() {
+        for (int i = 0; i < rear; ) {
+            strings[i] = strings[++i];
+        }
+        if (rear > 0) rear--;
     }
 }
