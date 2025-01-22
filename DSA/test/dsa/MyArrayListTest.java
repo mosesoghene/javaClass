@@ -58,4 +58,16 @@ public class MyArrayListTest {
         assertTrue(thrown);
     }
 
+    @Test
+    public void addXYZA_capacityincreases_MyArrayTest() {
+        strings.add("One");
+        strings.add("Two");
+        assertEquals(3, strings.capacity());
+        strings.add("Three");
+        assertEquals(6, strings.capacity());
+        strings.add("Four");
+        strings.add("Five");
+        strings.add("Six");
+        assertEquals(12, strings.capacity());
+    }
 }
