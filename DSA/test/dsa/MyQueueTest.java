@@ -66,5 +66,16 @@ public class MyQueueTest {
         assertEquals("Two", queue.dequeue());
         assertNull(queue.dequeue());
         assertTrue(queue.isEmpty());
+        assertEquals(0, queue.size());
+    }
+
+    @Test
+    public void enqueueXY_dequeueX_enqueueZ_dequeueY_peekReturnZ_() {
+        queue.enqueue("One");
+        queue.enqueue("Two");
+        assertEquals("One", queue.dequeue());
+        queue.enqueue("Three");
+        assertEquals("Two", queue.dequeue());
+        assertEquals("Three", queue.peek());
     }
 }

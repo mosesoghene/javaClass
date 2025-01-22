@@ -34,4 +34,12 @@ public class MyQueue {
         }
         if (rear > 0) rear--;
     }
+
+    public int size() {
+        return rear;
+    }
+
+    public String peek(){
+        return strings[front];
+    }
 }
