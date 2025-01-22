@@ -42,4 +42,17 @@ public class MyArrayList {
     public int capacity() {
         return capacity;
     }
+
+    public void insert(int index, String element) {
+        String currentElement = element;
+        while (elements[index] != null) {
+            String temp = elements[index];
+            elements[index++] = currentElement;
+            currentElement = temp;
+        }
+        elements[index] = currentElement;
+        size++;
+    }
+
+
 }

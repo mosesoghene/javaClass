@@ -70,4 +70,23 @@ public class MyArrayListTest {
         strings.add("Six");
         assertEquals(12, strings.capacity());
     }
+
+    @Test
+    public void addXYZ_insertAinY_getIndex2ReceiveY_MyArrayTest() throws Exception {
+        strings.add("One");
+        strings.add("Two");
+        strings.add("Three");
+        assertEquals("Three", strings.get(2));
+        strings.insert(1 ,"Four");
+        assertEquals("Two", strings.get(2));
+    }
+
+    @Test
+    public void addXYZ_removeY_getIndex1ReceiveZ_MyArrayTest() throws Exception {
+        strings.add("One");
+        strings.add("Two");
+        strings.add("Three");
+        strings.remove("Two");
+        assertEquals("Three", strings.get(1));
+    }
 }
