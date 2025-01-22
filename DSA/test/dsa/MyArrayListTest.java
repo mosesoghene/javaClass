@@ -112,4 +112,12 @@ public class MyArrayListTest {
         assertTrue(strings.contains("Two"));
         assertFalse(strings.contains("A"));
     }
+
+    @Test
+    public void addXYZ_returnsXYZ_MyArrayTest() {
+        strings.add("One");
+        strings.add("Two");
+        strings.add("Three");
+        assertEquals("[One, Two, Three]", strings.toString());
+    }
 }

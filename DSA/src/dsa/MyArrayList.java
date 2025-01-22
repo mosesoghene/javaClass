@@ -84,4 +84,15 @@ public class MyArrayList {
         }
         return false;
     }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < size; i++) {
+            if (!(i + 1 == size)) sb.append(elements[i]).append(", ");
+            else sb.append(elements[i]);
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
