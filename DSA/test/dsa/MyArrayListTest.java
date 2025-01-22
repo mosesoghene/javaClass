@@ -89,4 +89,19 @@ public class MyArrayListTest {
         strings.remove("Two");
         assertEquals("Three", strings.get(1));
     }
+
+    @Test
+    public void addXYZ_removeA_throwsError_ElementNotFound_MyArrayTest() throws Exception {
+        strings.add("One");
+        strings.add("Two");
+        strings.add("Three");
+
+        boolean thrown = false;
+        try {
+            strings.remove("four");
+        } catch (Exception e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
 }

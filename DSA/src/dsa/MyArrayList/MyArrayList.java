@@ -55,4 +55,26 @@ public class MyArrayList {
     }
 
 
+    public void remove(String element) throws Exception {
+        int index = findIndexOf(element);
+        if (index == -1) throw new Exception("Element not found");
+
+        updateListFrom(index);
+
+    }
+
+    private int findIndexOf(String element) {
+        for (int index = 0; index < size; index++) {
+            if (element.equals(elements[index])) return index;
+        }
+        return -1;
+    }
+
+    private void updateListFrom(int index) {
+        for (int i = index; i < size; i++) {
+            elements[i] = elements[++index];
+        }
+        elements[index] = null;
+        --size;
+    }
 }
