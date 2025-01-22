@@ -21,4 +21,19 @@ public class MySetTest {
     }
 
 
+    @Test
+    void add() {
+    }
+
+    @Test
+    void size() {
+    }
+
+    @Test
+    void testToString() {
+    }
+
+    @Test
+    void get() {
+    }
 }
