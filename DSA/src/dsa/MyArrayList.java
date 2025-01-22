@@ -30,12 +30,12 @@ public class MyArrayList {
     }
 
     public String get(int index) throws Exception {
-        if (isValidIndex(index))
+        if (isInvalidIndex(index))
             throw new IndexOutOfBoundsException("Index out of list bounds");
         return elements[index];
     }
 
-    private boolean isValidIndex(int index) {
+    private boolean isInvalidIndex(int index) {
         return index < 0 || index >= size;
     }
 
