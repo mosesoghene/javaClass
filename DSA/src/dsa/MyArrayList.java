@@ -77,4 +77,11 @@ public class MyArrayList {
         elements[index] = null;
         --size;
     }
+
+    public boolean contains(String element) {
+        for(String item: elements) {
+            if (element.equals(item)) return true;
+        }
+        return false;
+    }
 }

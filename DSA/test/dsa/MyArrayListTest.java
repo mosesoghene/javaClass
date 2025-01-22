@@ -103,4 +103,13 @@ public class MyArrayListTest {
         }
         assertTrue(thrown);
     }
+
+    @Test
+    public void addXYZ_containsYReturnsTrue_MyArrayTest() {
+        strings.add("One");
+        strings.add("Two");
+        strings.add("Three");
+        assertTrue(strings.contains("Two"));
+        assertFalse(strings.contains("A"));
+    }
 }
