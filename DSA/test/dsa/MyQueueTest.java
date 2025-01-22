@@ -28,4 +28,15 @@ public class MyQueueTest {
         queue.enqueue("One");
         assertFalse(queue.isEmpty());
     }
+
+    @Test
+    public void addX_dequeue_returnX_QueueIsEmpty_MyQueueTest() {
+        queue.enqueue("One");
+        assertEquals("One", queue.dequeue());
+        assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    public void addX_dequeue_returnX_QueueIsNotEmpty_MyQueueTest() {}
+
 }

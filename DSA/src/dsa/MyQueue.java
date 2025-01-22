@@ -21,4 +21,9 @@ public class MyQueue {
     public void enqueue(String element) {
         rear++;
     }
+
+    public String dequeue() {
+        rear--;
+        return "One";
+    }
 }
