@@ -1,7 +1,7 @@
 package dsa;
 
 public class MyQueue {
-    private String[] strings;
+    private final String[] strings;
     private final int front = 0;
     private int rear = 0;
 
