@@ -17,7 +17,13 @@ public class MyArrayList {
         elements[size++] = element;
     }
 
-    public String get(int index) {
+    public String get(int index) throws Exception {
+        if (isValidIndex(index))
+            throw new IndexOutOfBoundsException("Index out of list bounds");
         return elements[index];
+    }
+
+    private boolean isValidIndex(int index) {
+        return index < 0 || index >= size;
     }
 }
