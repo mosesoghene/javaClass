@@ -10,4 +10,12 @@ public class MySet {
     public int size(){
         return set.size();
     }
+
+    public String toString(){
+        return set.toString();
+    }
+
+    public String get(int index) throws Exception {
+        return set.get(index);
+    }
 }
