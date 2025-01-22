@@ -1,4 +1,4 @@
-package dsa.MyArrayList;
+package dsa;
 
 public class MyArrayList {
     private int size = 0;
