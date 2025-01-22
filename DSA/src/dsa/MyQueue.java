@@ -10,4 +10,15 @@ public class MyQueue {
     }
 
 
+    public int capacity() {
+        return capacity;
+    }
+
+    public boolean isEmpty() {
+        return rear == front;
+    }
+
+    public void enqueue(String element) {
+        rear++;
+    }
 }

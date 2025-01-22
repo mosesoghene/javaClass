@@ -3,7 +3,7 @@ package dsa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MyQueueTest {
     private MyQueue queue;
@@ -13,5 +13,19 @@ public class MyQueueTest {
         queue = new MyQueue(3);
     }
 
+    @Test
+    public void queueHasCapacity_MyQueueTest() {
+        assertEquals(3, queue.capacity());
+    }
 
+    @Test
+    public void queueIsEmpty_MyQueueTest() {
+        assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    public void addX_QueueNotEmpty_MyQueueTest() {
+        queue.enqueue("One");
+        assertFalse(queue.isEmpty());
+    }
 }
