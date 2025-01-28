@@ -76,4 +76,22 @@ public class BikeTest {
         assertEquals(42, bike.speed());
         assertEquals(4, bike.gear());
     }
+
+    @Test
+    public void newBikeTurnedOn_accelerate29Times_decelerate_getSpeed_speed38_gear3_bikeTest(){
+        bike.turnOn();
+        assertEquals(0, bike.speed());
+        for (int i = 0; i < 29; i++) bike.accelerate();
+        bike.decelerate();
+        assertEquals(38, bike.speed());
+        assertEquals(3, bike.gear());
+    }
+
+    @Test
+    public void newBikeTurnedOn_delecrate_getSpeedReturnsZero_getGearReturns1_bikeTest(){
+        bike.turnOn();
+        bike.decelerate();
+        assertEquals(0, bike.speed());
+        assertEquals(1, bike.gear());
+    }
 }

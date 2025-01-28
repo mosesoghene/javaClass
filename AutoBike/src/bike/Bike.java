@@ -37,4 +37,13 @@ public class Bike {
     public int gear() {
         return gear;
     }
+
+    public void decelerate() {
+        if (speed <= 0) {
+            speed = 0;
+            return;
+        }
+        speed -= gear;
+        changeGear();
+    }
 }
