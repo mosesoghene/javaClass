@@ -29,7 +29,9 @@ public class Bike {
     }
 
     private void changeGear() {
-        if (speed > 10 && speed % 20 == 0 && gear < 4) gear += 1;
+        if (speed >= 20 && speed < 30) gear = 2;
+        if (speed >= 30 && speed < 40) gear = 3;
+        if (speed >= 40) gear = 4;
     }
 
     public int gear() {

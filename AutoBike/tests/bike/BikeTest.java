@@ -51,11 +51,29 @@ public class BikeTest {
     }
 
     @Test
-    public void newBikeTurnedOn_accelerate21Times_getSpeed_speed21_gear2_bikeTest(){
+    public void newBikeTurnedOn_accelerate21Times_getSpeed_speed24_gear2_bikeTest(){
         bike.turnOn();
         assertEquals(0, bike.speed());
         for (int i = 0; i < 22; i++) bike.accelerate();
         assertEquals(24, bike.speed());
         assertEquals(2, bike.gear());
+    }
+
+    @Test
+    public void newBikeTurnedOn_accelerate25Times_getSpeed_speed21_gear3_bikeTest(){
+        bike.turnOn();
+        assertEquals(0, bike.speed());
+        for (int i = 0; i < 25; i++) bike.accelerate();
+        assertEquals(30, bike.speed());
+        assertEquals(3, bike.gear());
+    }
+
+    @Test
+    public void newBikeTurnedOn_accelerate29Times_getSpeed_speed42_gear4_bikeTest(){
+        bike.turnOn();
+        assertEquals(0, bike.speed());
+        for (int i = 0; i < 29; i++) bike.accelerate();
+        assertEquals(42, bike.speed());
+        assertEquals(4, bike.gear());
     }
 }
