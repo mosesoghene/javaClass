@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Diary {
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
     private boolean isLocked;
-    private List<Entry> entries = new ArrayList<>();
+    private final List<Entry> entries = new ArrayList<>();
 
     public Diary(String username, String password) {
         this.username = username;
@@ -34,10 +34,11 @@ public class Diary {
 
     public Entry findEntryById(int id) {
         if (entries.isEmpty() || isLocked()) return null;
-        for (Entry entry : entries) {
-            if (entry.getId() == id) return entry;
-        }
-        return null;
+
+        return entries.stream()
+                .filter((entry) -> entry.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     public void delete(int id) {
@@ -56,7 +57,7 @@ public class Diary {
         return username;
     }
 
-    public boolean isAutenticated(String username, String password) {
+    public boolean isAuthenticated(String username, String password) {
         return username().equals(username) && this.password.equals(password);
     }
 }

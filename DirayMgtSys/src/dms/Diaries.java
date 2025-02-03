@@ -11,20 +11,13 @@ public class Diaries {
     }
 
     public Diary findByUsername(String username) {
-        for (Diary diary : diaries) {
-            if (diary.username().equals(username)) return diary;
-        }
-        return null;
+        return diaries.stream()
+                .filter((diary) -> diary.username().equals(username))
+                .findFirst()
+                .orElse(null);
     }
 
     public void delete(String username, String password) {
-        for (Diary diary : diaries) {
-            if (diary.isAutenticated(username, password)) {
-                diaries.remove(diary);
-                return;
-            }
-        }
+        diaries.removeIf((diary) -> diary.isAuthenticated(username, password));
     }
-
-
 }
