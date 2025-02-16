@@ -20,8 +20,17 @@ public class SinglyLinkedListTest {
 
     @Test
     public void addX_sizeIncreasesByOne_SinglyLinkedListTest() {
+        assertEquals(0, sll.size());
         sll.add(1);
         assertEquals(1, sll.size());
+    }
+
+    @Test
+    public void addXY_sizeIncreasesByTwo_SinglyLinkedListTest() {
+        assertEquals(0, sll.size());
+        sll.add(1);
+        sll.add(2);
+        assertEquals(2, sll.size());
     }
 
 }
