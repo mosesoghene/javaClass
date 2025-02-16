@@ -24,6 +24,7 @@ public class Bike {
     }
 
     public void accelerate() {
+        if (!isOn) return;
         speed += gear;
         changeGear();
     }
