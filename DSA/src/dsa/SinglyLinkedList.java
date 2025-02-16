@@ -64,13 +64,19 @@ public class SinglyLinkedList<T> {
 
     public void insert(T data, int index) {
         validateBounds(index);
-        Node<T> previousNode = head;
-        Node<T> currentNode = previousNode.next;
-        for (int i = 0; i < index; i++) currentNode = currentNode.next;
 
         Node<T> newNode = new Node<>(data);
+        if (index == 0) {
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+
+        Node<T> previousNode = head;
+        for (int i = 0; i < index - 1; i++) previousNode = previousNode.next;
+
+        newNode.next = previousNode.next;
         previousNode.next = newNode;
-        newNode.next = currentNode;
         size++;
     }
 

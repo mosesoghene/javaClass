@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SinglyLinkedListTest {
     private SinglyLinkedList<Integer> sll;
@@ -64,8 +65,23 @@ public class SinglyLinkedListTest {
         sll.add(3);
         assertEquals(2, sll.get(1));
 
-        sll.insert(4, 1);
-        assertEquals(4, sll.get(1));
+        sll.insert(4, 0);
+        assertEquals(4, sll.get(0));
+
+
+        sll.insert(5, 2);
+        assertEquals(5, sll.get(2));
+    }
+
+    @Test
+    public void addXYZ_getIndexThree_throwsException_insertAInIndexThree_throwsException_SinglyLinkedListTest() {
+        sll.add(1);
+        sll.add(2);
+        sll.add(3);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> sll.insert(4, 3));
+
+        assertThrows(IndexOutOfBoundsException.class, () -> sll.get(3));
     }
 
 }
