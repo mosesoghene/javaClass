@@ -115,9 +115,6 @@ public class StudentGrade{
         System.out.println("<<================================================================================>>");
     }
 
-  
-    
-  
   public static int[][] collectAllScores(int studentNumber, int subjectNumber){
     int[][] scores = new int[studentNumber][subjectNumber];
     for (int i = 0; i < studentNumber; i++) {
