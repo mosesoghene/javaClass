@@ -31,10 +31,22 @@ public class SinglyLinkedList<T> {
         }
 
         Node<T> current = head;
-        while (current.next != null)
-            current = current.next;
+        while (current.next != null) current = current.next;
         current.next = newNode;
         size++;
+    }
+
+    public T get(int index) {
+        validateBounds(index);
+        Node<T> currentNode = head;
+        for (int i = 0; i < index; i++) currentNode = currentNode.next;
+        return currentNode.data;
+    }
+
+    private void validateBounds(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: '" + index + "' out of bound for Size -> " + size);
+        }
     }
 
 

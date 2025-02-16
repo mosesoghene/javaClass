@@ -33,4 +33,18 @@ public class SinglyLinkedListTest {
         assertEquals(2, sll.size());
     }
 
+    @Test
+    public void addX_getIndexZero_returnX_SinglyLinkedListTest() {
+        sll.add(1);
+        assertEquals(1, sll.get(0));
+    }
+
+    @Test
+    public void addXYZ_getIndexOne_returnY_SinglyLinkedListTest() {
+        sll.add(1);
+        sll.add(2);
+        sll.add(3);
+        assertEquals(2, sll.get(1));
+    }
+
 }
