@@ -49,5 +49,15 @@ public class SinglyLinkedList<T> {
         }
     }
 
+    public void prepend(T data) {
+        Node<T> newNode = new Node<>(data);
+        if (head == null) {
+            add(data);
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+        size++;
+    }
 
 }
