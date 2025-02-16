@@ -18,4 +18,16 @@ public class MySet {
     public String get(int index) throws Exception {
         return set.get(index);
     }
+
+    public void remove(String element) throws Exception {
+        set.remove(element);
+    }
+
+    public boolean contains(String element) {
+        return set.contains(element);
+    }
+
+    public int indexOf(String element) {
+        return set.findIndexOf(element);
+    }
 }
