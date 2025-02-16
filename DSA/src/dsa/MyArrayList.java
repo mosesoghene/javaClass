@@ -63,7 +63,7 @@ public class MyArrayList {
 
     }
 
-    private int findIndexOf(String element) {
+    public int findIndexOf(String element) {
         for (int index = 0; index < size; index++) {
             if (element.equals(elements[index])) return index;
         }
@@ -94,5 +94,9 @@ public class MyArrayList {
         }
         sb.append("]");
         return sb.toString();
+    }
+
+    public void update(int index, String element) {
+        elements[index] = element;
     }
 }
