@@ -4,6 +4,8 @@ public class SinglyLinkedList<T> {
     private Node<T> head;
     private int size = 0;
 
+
+
     private static class Node<T> {
         T data;
         Node<T> next;
@@ -57,6 +59,18 @@ public class SinglyLinkedList<T> {
         }
         newNode.next = head;
         head = newNode;
+        size++;
+    }
+
+    public void insert(T data, int index) {
+        validateBounds(index);
+        Node<T> previousNode = head;
+        Node<T> currentNode = previousNode.next;
+        for (int i = 0; i < index; i++) currentNode = currentNode.next;
+
+        Node<T> newNode = new Node<>(data);
+        previousNode.next = newNode;
+        newNode.next = currentNode;
         size++;
     }
 

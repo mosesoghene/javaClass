@@ -57,4 +57,15 @@ public class SinglyLinkedListTest {
         assertEquals(3, sll.get(0));
     }
 
+    @Test
+    public void addXYZ_getIndexOne_returnY_insertAInIndexOne_getIndexOne_returnA_SinglyLinkedListTest() {
+        sll.add(1);
+        sll.add(2);
+        sll.add(3);
+        assertEquals(2, sll.get(1));
+
+        sll.insert(4, 1);
+        assertEquals(4, sll.get(1));
+    }
+
 }
