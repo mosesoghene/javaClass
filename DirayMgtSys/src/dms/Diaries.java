@@ -12,9 +12,13 @@ public class Diaries {
 
     public Diary findByUsername(String username) {
         return diaries.stream()
-                .filter((diary) -> diary.username().equals(username))
+                .filter((diary) -> isUsername(username, diary))
                 .findFirst()
                 .orElse(null);
+    }
+
+    private boolean isUsername(String username, Diary diary) {
+        return diary.username().equals(username);
     }
 
     public void delete(String username, String password) {
