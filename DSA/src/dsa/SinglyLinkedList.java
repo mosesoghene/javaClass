@@ -1,4 +1,41 @@
 package dsa;
 
-public class SinglyLinkedList {
+public class SinglyLinkedList<T> {
+    private Node<T> head;
+    private int size = 0;
+
+    private static class Node<T> {
+        T data;
+        Node<T> next;
+
+        public Node(T data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public SinglyLinkedList() {
+        head = null;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public void add(T data) {
+        Node<T> newNode = new Node<>(data);
+        if (head == null) {
+            head = newNode;
+            size++;
+            return;
+        }
+
+        Node<T> current = head;
+        while (current.next != null)
+            current = current.next;
+        current.next = newNode;
+        size++;
+    }
+
+
 }
