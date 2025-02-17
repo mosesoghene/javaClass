@@ -112,21 +112,21 @@ public class SinglyLinkedList<T> {
     }
 
 
-    public boolean contains(T value) {
+    public boolean contains(T element) {
         Node<T> currentNode = head;
         while (currentNode != null) {
-            if (currentNode.data.equals(value)) return true;
+            if (currentNode.data.equals(element)) return true;
             currentNode = currentNode.next;
         }
         return false;
     }
 
-    public int indexOf(T value) {
+    public int indexOf(T element) {
         if (size == 0) throw new NoSuchElementException("Cannot find an element in an empty list.");
         Node<T> currentNode = head;
         int index = 0;
         while (currentNode != null) {
-            if (currentNode.data.equals(value)) return index;
+            if (currentNode.data.equals(element)) return index;
             currentNode = currentNode.next;
             index++;
         }
