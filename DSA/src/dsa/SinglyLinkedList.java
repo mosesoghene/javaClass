@@ -1,5 +1,7 @@
 package dsa;
 
+import java.util.NoSuchElementException;
+
 public class SinglyLinkedList<T> {
     private Node<T> head;
     private int size = 0;
@@ -65,19 +67,50 @@ public class SinglyLinkedList<T> {
     public void insert(T data, int index) {
         validateBounds(index);
 
-        Node<T> newNode = new Node<>(data);
         if (index == 0) {
-            newNode.next = head;
-            head = newNode;
+            prepend(data);
             return;
         }
 
+        if (index == size) {
+            add(data);
+            return;
+        }
+
+
+        Node<T> newNode = new Node<>(data);
         Node<T> previousNode = head;
         for (int i = 0; i < index - 1; i++) previousNode = previousNode.next;
 
         newNode.next = previousNode.next;
         previousNode.next = newNode;
         size++;
+    }
+
+    public T removeFirst() {
+        if (head == null) throw new NoSuchElementException("Cannot remove from an empty list.");
+
+        T data = head.data;
+        head = head.next;
+        size--;
+        return data;
+    }
+
+    public T removeLast() {
+        if (size <= 1) return removeFirst();
+
+        Node<T> current = head;
+        while (current.next.next != null) current = current.next;
+        T data = current.next.data;
+        current.next = null;
+        size--;
+
+        return data;
+    }
+
+    public void clear() {
+        head = null;
+        size = 0;
     }
 
 }

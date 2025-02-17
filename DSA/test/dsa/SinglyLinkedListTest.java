@@ -3,85 +3,135 @@ package dsa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SinglyLinkedListTest {
-    private SinglyLinkedList<Integer> sll;
+    private SinglyLinkedList<Integer> list;
 
     @BeforeEach
     void setUp() {
-        sll = new SinglyLinkedList<>();
+        list = new SinglyLinkedList<>();
     }
 
     @Test
     public void sizeIsZeroByDefault_SinglyLinkedListTest() {
-        assertEquals(0, sll.size());
+        assertEquals(0, list.size());
     }
 
     @Test
     public void addX_sizeIncreasesByOne_SinglyLinkedListTest() {
-        assertEquals(0, sll.size());
-        sll.add(1);
-        assertEquals(1, sll.size());
+        assertEquals(0, list.size());
+        list.add(1);
+        assertEquals(1, list.size());
     }
 
     @Test
     public void addXY_sizeIncreasesByTwo_SinglyLinkedListTest() {
-        assertEquals(0, sll.size());
-        sll.add(1);
-        sll.add(2);
-        assertEquals(2, sll.size());
+        assertEquals(0, list.size());
+        list.add(1);
+        list.add(2);
+        assertEquals(2, list.size());
     }
 
     @Test
     public void addX_getIndexZero_returnX_SinglyLinkedListTest() {
-        sll.add(1);
-        assertEquals(1, sll.get(0));
+        list.add(1);
+        assertEquals(1, list.get(0));
     }
 
     @Test
     public void addXYZ_getIndexOne_returnY_SinglyLinkedListTest() {
-        sll.add(1);
-        sll.add(2);
-        sll.add(3);
-        assertEquals(2, sll.get(1));
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertEquals(2, list.get(1));
     }
 
     @Test
     public void addXY_getIndexZero_returnX_prependZ_getIndexZero_returnZ_SinglyLinkedListTest() {
-        sll.add(1);
-        sll.add(2);
-        assertEquals(1, sll.get(0));
+        list.add(1);
+        list.add(2);
+        assertEquals(1, list.get(0));
 
-        sll.prepend(3);
-        assertEquals(3, sll.get(0));
+        list.prepend(3);
+        assertEquals(3, list.get(0));
     }
 
     @Test
     public void addXYZ_getIndexOne_returnY_insertAInIndexOne_getIndexOne_returnA_SinglyLinkedListTest() {
-        sll.add(1);
-        sll.add(2);
-        sll.add(3);
-        assertEquals(2, sll.get(1));
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertEquals(2, list.get(1));
 
-        sll.insert(4, 0);
-        assertEquals(4, sll.get(0));
+        list.insert(4, 0);
+        assertEquals(4, list.get(0));
 
 
-        sll.insert(5, 2);
-        assertEquals(5, sll.get(2));
+        list.insert(5, 2);
+        assertEquals(5, list.get(2));
     }
 
     @Test
     public void addXYZ_getIndexThree_throwsException_insertAInIndexThree_throwsException_SinglyLinkedListTest() {
-        sll.add(1);
-        sll.add(2);
-        sll.add(3);
+        list.add(1);
+        list.add(2);
+        list.add(3);
 
-        assertThrows(IndexOutOfBoundsException.class, () -> sll.insert(4, 3));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.insert(4, 3));
 
-        assertThrows(IndexOutOfBoundsException.class, () -> sll.get(3));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(3));
     }
 
+    @Test
+    public void addXYZ_removeFirstReturnsX_sizeDecreasesByOne_SinglyLinkedListTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertEquals(3, list.size());
+
+        assertEquals(1, list.removeFirst());
+        assertEquals(2, list.size());
+
+        assertEquals(2, list.removeFirst());
+        assertEquals(1, list.size());
+    }
+
+    @Test
+    public void removeFirstOnEmptyListThrowsException_SinglyLinkedListTest() {
+        assertEquals(0, list.size());
+        assertThrows(NoSuchElementException.class, () -> list.removeFirst());
+    }
+
+    @Test
+    public void addXYZ_removeLastReturnsZ_sizeDecreasesByOne_SinglyLinkedListTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertEquals(3, list.size());
+
+        assertEquals(3, list.removeLast());
+        assertEquals(2, list.size());
+
+        assertEquals(2, list.removeLast());
+        assertEquals(1, list.size());
+    }
+
+    @Test
+    public void removeLastOnEmptyListThrowsException_SinglyLinkedListTest() {
+        assertEquals(0, list.size());
+        assertThrows(NoSuchElementException.class, () -> list.removeLast());
+    }
+
+    @Test
+    public void addXYZ_clearRemovesAllElements_sizeSetToZero_SinglyLinkedListTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.clear();
+        assertEquals(0, list.size());
+    }
 }
