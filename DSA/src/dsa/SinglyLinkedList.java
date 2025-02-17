@@ -85,6 +85,27 @@ public class SinglyLinkedList<T> {
         size++;
     }
 
+    public void remove(int index) {
+        validateBounds(index);
+
+        if (index == 0) {
+            removeFirst();
+            return;
+        }
+
+        if (index == size -1) {
+            removeLast();
+            return;
+        }
+
+
+        Node<T> previousNode = head;
+        for (int i = 0; i < index - 1; i++) previousNode = previousNode.next;
+
+        previousNode.next = previousNode.next.next;
+        size--;
+    }
+
     public T removeFirst() {
         if (head == null) throw new NoSuchElementException("Cannot remove from an empty list.");
 

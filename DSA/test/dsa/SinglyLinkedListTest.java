@@ -157,4 +157,18 @@ public class SinglyLinkedListTest {
         assertEquals(0, list.size());
         assertThrows(NoSuchElementException.class, () -> list.indexOf(1));
     }
+
+    @Test
+    public void addXYZ_removeIndexOne_getIndexOneReturnsZ_SinglyLinkedListTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        assertEquals(3, list.size());
+
+        list.remove(1);
+        assertEquals(3, list.get(1));
+
+        assertEquals(2, list.size());
+    }
 }
