@@ -6,8 +6,6 @@ public class SinglyLinkedList<T> {
     private Node<T> head;
     private int size = 0;
 
-
-
     private static class Node<T> {
         T data;
         Node<T> next;
@@ -111,6 +109,28 @@ public class SinglyLinkedList<T> {
     public void clear() {
         head = null;
         size = 0;
+    }
+
+
+    public boolean contains(T value) {
+        Node<T> currentNode = head;
+        while (currentNode != null) {
+            if (currentNode.data.equals(value)) return true;
+            currentNode = currentNode.next;
+        }
+        return false;
+    }
+
+    public int indexOf(T value) {
+        if (size == 0) throw new NoSuchElementException("Cannot find an element in an empty list.");
+        Node<T> currentNode = head;
+        int index = 0;
+        while (currentNode != null) {
+            if (currentNode.data.equals(value)) return index;
+            currentNode = currentNode.next;
+            index++;
+        }
+        return -1;
     }
 
 }

@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SinglyLinkedListTest {
     private SinglyLinkedList<Integer> list;
@@ -133,5 +132,29 @@ public class SinglyLinkedListTest {
         list.add(3);
         list.clear();
         assertEquals(0, list.size());
+    }
+
+    @Test
+    public void addXYZ_listContainsY_returnsTrue_listContainsA_returnsFalse_SinglyLinkedListTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertTrue(list.contains(2));
+        assertFalse(list.contains(4));
+    }
+
+    @Test
+    public void addXYZ_indexOfY_returnsOne_SinglyLinkedListTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertEquals(1, list.indexOf(2));
+        assertEquals(0, list.indexOf(1));
+    }
+
+    @Test
+    public void indexOf_ThrowsErrorOnEmptyList_SinglyLinkedListTest() {
+        assertEquals(0, list.size());
+        assertThrows(NoSuchElementException.class, () -> list.indexOf(1));
     }
 }
